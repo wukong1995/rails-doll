@@ -8,3 +8,8 @@
 // layout file, like app/views/layouts/application.html.erb
 import '../style/base.scss';
 
+// import 'hello_react';
+
+(() => {
+  console.log('application.js');
+});
