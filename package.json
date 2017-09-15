@@ -1,5 +1,22 @@
 {
   "name": "rails_app",
-  "private": true,
-  "dependencies": {}
+  "scripts": {
+    "start": "./bin/webpack-dev-server",
+    "dev": "./bin/webpack-dev-server --inline --hot",
+    "build": "rails webpacker:compile",
+    "clean": "rm -f public/packs/*"
+  },
+  "dependencies": {
+    "@rails/webpacker": "^3.0.1",
+    "babel-preset-react": "^6.24.1",
+    "normalize.css": "^7.0.0",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.8.2"
+  },
+  "author": "wukong",
+  "license": "ISC"
 }
