@@ -4,3 +4,31 @@ p
 p
   strong Text:&nbsp;
   | #{@article.text}
+
+h2 Comments
+- @article.comments.each do |comment|
+  p
+    strong Commenter:&nbsp;
+    | #{comment.commenter}
+  p
+    strong Comment::&nbsp;
+    | #{comment.body}
+  p
+    = link_to 'Destroy Comment', [comment.article, comment],
+              method: :delete,
+              data: { confirm: 'Are you sure?'}
+
+
+h2 Add a Comment
+= form_for([@article, @article.comments.build]) do |f|
+  p
+    = f.label :commenter
+    = f.text_field :commenter
+  p
+    = f.label :body
+    = f.text_area :body
+  p
+    = f.submit
+
+= link_to 'Edit', edit_article_path(@article)
+= link_to 'Back', articles_path
