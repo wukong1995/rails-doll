@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+  # 通过身份验证的用户才能进行删除操作
+  # 弹下框 请输入下方的name和password
+  http_basic_authenticate_with name: "dhh", password: "secret", only: :destroy
+
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
