@@ -1,0 +1,11 @@
+h1 New Article
+form method="POST" action=articles_path
+  input type="hidden" name="authenticity_token" value=""
+  p Title
+  input type="text" name="articles[name]" /
+
+  p Text
+  textarea name="articles[content]"
+
+  p
+    input type="submit" value="Save Article"
