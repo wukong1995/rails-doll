@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   protect_from_forgery with: :null_session
   # 身份验证系统
-  http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
+  # http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
     @articles = Article.all
