@@ -6,5 +6,6 @@ class Article < ApplicationRecord
   validates :text, presence: true
 end
 
+# id :uuid
 # string :title
 # text :text
