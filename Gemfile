@@ -20,9 +20,11 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+# gem 'coffee-rails', '~> 4.2'
+
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 # gem 'turbolinks', '~> 5'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -39,11 +41,12 @@ gem 'webpacker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development do
+group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "capistrano", "~> 3.9"
   gem 'selenium-webdriver'
+  gem 'rspec-rails'
 end
 
 
@@ -54,7 +57,6 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-gem 'rspec-rails', :group => [:development, :test]
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
