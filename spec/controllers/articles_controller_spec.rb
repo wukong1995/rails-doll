@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe ArticlesController, type: :controller do
   describe "articles_controller" do
     # let(:count) { Article.count }  为什么不能以count作为参考值
-    let(:article) { Article.create(title: "test title", text: "test text") }
+
+    let(:article) { FactoryGirl.create(:article) }
 
     it "create successlly article" do
       expect(article).to eq(Article.find(article.id))

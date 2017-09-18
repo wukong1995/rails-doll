@@ -51,7 +51,7 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   # gem 'capybara', '~> 2.13'
   gem 'rspec'
-  # gem 'factory-girl'
+  gem 'factory_girl_rails'
 end
 
 gem 'rspec-rails', :group => [:development, :test]
