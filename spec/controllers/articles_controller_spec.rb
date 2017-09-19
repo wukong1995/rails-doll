@@ -1,26 +1,50 @@
 require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
-  describe "articles_controller" do
-    # let(:count) { Article.count }  为什么不能以count作为参考值
+  # let(:count) { Article.count }  为什么不能以count作为参考值
 
-    let(:article) { FactoryGirl.create(:article) }
+  let(:article) { FactoryGirl.create(:article) }
 
-    it "create successlly article" do
-      expect(article).to eq(Article.find(article.id))
+  describe "create successly" do
+    it "get article" do
+      expect(Article.find_by(id: article.id)).to eq(article)
     end
+  end
 
-    it "update article" do
+  describe "Get #index" do
+    it "return 200" do
+      get :index
+      expect(response).to be_success
+    end
+  end
+
+  describe "Get #show" do
+    it "return 200" do
+      get :show, params: { id: article.id }
+      expect(response).to be_success
+    end
+  end
+
+  describe "Get #edit" do
+    it "return 200" do
+      get :show, params: { id: article.id }
+      expect(response).to be_success
+    end
+  end
+
+  describe "Patch #update" do
+    it "return 200" do
       new_text = "update text"
-      article.update(text: new_text)
-
-      expect(article.text).to eq(new_text)
+      patch :update, params: { id: article.id, article: {title: new_text} }
+      expect(article.reload.title).to eq(new_text)
     end
+  end
 
-    it "destroy article" do
-      article.destroy
-
+  describe "Delete #destroy" do
+    it "get nil" do
+      delete :destroy, params: {id: article.id}
       expect(Article.find_by(id: article.id)).to eq(nil)
     end
   end
+
 end
