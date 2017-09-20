@@ -1,7 +1,4 @@
-/* eslint no-console:0 */
 
-import '../style/app.scss';
-import deleteArticle from '../page/welcome.js';
+import { application } from '../application';
 
-// import './hello_react.jsx';
-deleteArticle();
+application();

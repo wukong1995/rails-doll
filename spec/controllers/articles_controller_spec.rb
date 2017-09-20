@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 RSpec.describe ArticlesController, type: :controller do
-  # let(:count) { Article.count }  为什么不能以count作为参考值
 
   let(:article) { FactoryGirl.create(:article) }
 
-  describe "create successly" do
-    it "get article" do
-      expect(Article.find_by(id: article.id)).to eq(article)
+  describe "Post create" do
+    it "count change 1" do
+      expect do
+        post :create, params: {article: {text: "text second text", title: "title second title"}}
+      end.to change { Article.count }.by(1)
     end
   end
 
@@ -25,6 +26,7 @@ RSpec.describe ArticlesController, type: :controller do
     end
   end
 
+
   describe "Get #edit" do
     it "return 200" do
       get :show, params: { id: article.id }
@@ -36,6 +38,8 @@ RSpec.describe ArticlesController, type: :controller do
     it "return 200" do
       new_text = "update text"
       patch :update, params: { id: article.id, article: {title: new_text} }
+
+      # expect(response).to redirect_to(article_path)
       expect(article.reload.title).to eq(new_text)
     end
   end
