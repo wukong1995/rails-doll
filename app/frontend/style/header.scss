@@ -2,4 +2,10 @@
   background-color: #373737;
   color: #fff;
   font-size: 2rem;
+
+  &-right a {
+    color: #fff;
+    display: inline-block;
+    margin-left: 1rem;
+  }
 }
