@@ -38,6 +38,9 @@ gem "slim-rails"
 
 gem 'webpacker'
 
+# debug
+gem 'pry'
+
 # authorization system
 #gem "pundit"
 

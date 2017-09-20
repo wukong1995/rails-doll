@@ -1,12 +1,11 @@
 class SessionsController < ApplicationController
   def create
-    @user = User.find_by(email: params[:email])
+    @user = User.new(user_params)
 
-    if @user && @user.authenticate(params[:password])
-      session[:user_id] = @user.id
-      redirect_to user_path(@user)
-    else 
-      redirect_to new_session_path
+    if @user.save!
+      redirect_to signup_path
+    else
+      redirect_to signin_path
     end
   end
 
@@ -19,10 +18,24 @@ class SessionsController < ApplicationController
   end
 
   def signin
+    @user = User.find_by(email: user_params[:email])
+    binding.pry
+    
+    if @user && @user.authenticate(user_params[:password])
+      session[:user_id] = @user.id
+      redirect_to root_url
+    else 
+      redirect_to signin_path
+    end
+  end
+
+  def logout
+    reset_session
+    redirect_to root_url
   end
 
   private
   def user_params
-    params.require(:user).permit(:email, :username, :password)
+    params.require(:user).permit(:email, :user_name, :password)
   end
 end

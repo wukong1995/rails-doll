@@ -1,10 +1,15 @@
-.signin
-  form data-url="/session/signin"
-    .form-item
-      label email
-      input type="text" name="user[email]" /
-    .form-item
-      label password
-      input type="text" name="user[password]" /
-    .form-item
-      input type="button" name="btn-submmit" id="btn-submmit" value="登录"
+.session.signin
+  canvas#particles-js
+  .session-form
+    .session__header Sign In
+    form method="POST" action="/signin"
+      input name="utf8" type="hidden" value="✓" /
+      = hidden_field_tag :authenticity_token, form_authenticity_token
+      .session-item
+        label email
+        input type="text" name="user[email]" /
+      .session-item
+        label password
+        input type="password" name="user[password]" /
+      .session-item
+        button type="submit" id="btn-submmit" Signin

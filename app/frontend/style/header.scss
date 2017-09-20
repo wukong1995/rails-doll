@@ -7,5 +7,11 @@
     color: #fff;
     display: inline-block;
     margin-left: 1rem;
+
+    &.logout {
+      background-color: red;
+      padding: .5rem 1rem;
+      border-radius: 5px;
+    }
   }
 }
