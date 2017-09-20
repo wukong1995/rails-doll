@@ -1,29 +1,38 @@
 class SessionsController < ApplicationController
   def create
-    @user = User.new(user_params)
+    user = User.find_by(email: user_params[:email])
 
-    if @user.save!
-      redirect_to signup_path
+    if user == nil
+      user = User.new(user_params)
+      if user.save!
+        redirect_to signup_path
+      end
     else
-      redirect_to signin_path
+      session[:error] = "用户名已存在， 请登录"
+      redirect_to signup_path
     end
   end
 
   def index
+    @error = session[:error]
+    session[:error] = nil
     render 'signin'
   end
 
   def new
+    @error = session[:error]
+    session[:error] = nil
     render 'signup'
   end
 
   def signin
-    @user = User.find_by(email: user_params[:email])
-    
-    if @user && @user.authenticate(user_params[:password])
-      session[:user_id] = @user.id
+    user = User.find_by(email: user_params[:email])
+
+    if user && user.authenticate(user_params[:password])
+      session[:user_id] = user.id
       redirect_to root_url
-    else 
+    else
+      session[:error] = "用户名或密码错误"
       redirect_to signin_path
     end
   end
