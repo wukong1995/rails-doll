@@ -19,7 +19,6 @@ class SessionsController < ApplicationController
 
   def signin
     @user = User.find_by(email: user_params[:email])
-    binding.pry
     
     if @user && @user.authenticate(user_params[:password])
       session[:user_id] = @user.id
