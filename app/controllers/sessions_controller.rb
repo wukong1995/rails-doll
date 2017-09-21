@@ -4,7 +4,10 @@ class SessionsController < ApplicationController
 
     if user == nil
       user = User.new(user_params)
-      if user.save!
+      if user.valid? && user.save!
+        redirect_to signup_path
+      else
+        session[:error] = user.errors
         redirect_to signup_path
       end
     else
