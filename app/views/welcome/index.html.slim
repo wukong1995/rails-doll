@@ -1,6 +1,9 @@
 = render 'shared/header'
 
-.container
+.container.welcome
   h1 hello rails
   = link_to 'All Articles', controller: 'articles'
+  <br />
   = link_to 'New Articles', new_article_path
+
+/ = render 'shared/footer'
