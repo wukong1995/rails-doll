@@ -1,68 +1,68 @@
 /* eslint global-require: 0 */
 /* eslint import/no-dynamic-require: 0 */
 
-const config = require('./config')
-const assetHost = require('./asset_host')
+const config = require('./config');
+const assetHost = require('./asset_host');
 
-const { basename, dirname, join, relative, resolve } = require('path')
-const { sync } = require('glob')
-const extname = require('path-complete-extname')
+const { basename, dirname, join, relative, resolve } = require('path');
+const { sync } = require('glob');
+const extname = require('path-complete-extname');
 
-const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 function getLoaderMap() {
-  const result = new Map()
-  const paths = sync(resolve(__dirname, 'loaders', '*.js'))
+  const result = new Map();
+  const paths = sync(resolve(__dirname, 'loaders', '*.js'));
   paths.forEach((path) => {
-    const name = basename(path, extname(path))
-    result.set(name, require(path))
-  })
-  return result
+    const name = basename(path, extname(path));
+    result.set(name, require(path));
+  });
+  return result;
 }
 
 function getPluginMap() {
-  const result = new Map()
-  result.set('Environment', new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(process.env))))
-  result.set('ExtractText', new ExtractTextPlugin('[name]-[contenthash].css'))
-  result.set('Manifest', new ManifestPlugin({ publicPath: assetHost.publicPath, writeToFileEmit: true }))
-  return result
+  const result = new Map();
+  result.set('Environment', new webpack.EnvironmentPlugin(JSON.parse(JSON.stringify(process.env))));
+  result.set('ExtractText', new ExtractTextPlugin('[name]-[contenthash].css'));
+  result.set('Manifest', new ManifestPlugin({ publicPath: assetHost.publicPath, writeToFileEmit: true }));
+  return result;
 }
 
 function getExtensionsGlob() {
-  const { extensions } = config
+  const { extensions } = config;
   if (!extensions.length) {
-    throw new Error('You must configure at least one extension to compile in webpacker.yml')
+    throw new Error('You must configure at least one extension to compile in webpacker.yml');
   }
-  return extensions.length === 1 ? `**/${extensions[0]}` : `**/*{${extensions.join(',')}}`
+  return extensions.length === 1 ? `**/${extensions[0]}` : `**/*{${extensions.join(',')}}`;
 }
 
 function getEntryObject() {
-  const result = {}
-  const glob = getExtensionsGlob()
-  const rootPath = join(config.source_path, config.source_entry_path)
-  const paths = sync(join(rootPath, glob))
+  const result = {};
+  const glob = getExtensionsGlob();
+  const rootPath = join(config.source_path, config.source_entry_path);
+  const paths = sync(join(rootPath, glob));
   paths.forEach((path) => {
-    const namespace = relative(join(rootPath), dirname(path))
-    const name = join(namespace, basename(path, extname(path)))
-    result[name] = resolve(path)
-  })
-  return result
+    const namespace = relative(join(rootPath), dirname(path));
+    const name = join(namespace, basename(path, extname(path)));
+    result[name] = resolve(path);
+  });
+  return result;
 }
 
 function getModulePaths() {
-  let result = [resolve(config.source_path), 'node_modules']
+  let result = [resolve(config.source_path), 'node_modules'];
   if (config.resolved_paths) {
-    result = result.concat(config.resolved_paths)
+    result = result.concat(config.resolved_paths);
   }
-  return result
+  return result;
 }
 
 module.exports = class Environment {
   constructor() {
-    this.loaders = getLoaderMap()
-    this.plugins = getPluginMap()
+    this.loaders = getLoaderMap();
+    this.plugins = getPluginMap();
   }
 
   toWebpackConfig() {
@@ -90,6 +90,6 @@ module.exports = class Environment {
       resolveLoader: {
         modules: ['node_modules']
       }
-    }
+    };
   }
-}
+};

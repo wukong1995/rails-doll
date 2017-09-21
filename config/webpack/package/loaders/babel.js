@@ -1,5 +1,5 @@
-const { join } = require('path')
-const { cache_path } = require('../config')
+const { join } = require('path');
+const { cache_path } = require('../config');
 
 module.exports = {
   test: /\.(js|jsx)?(\.erb)?$/,
@@ -8,4 +8,4 @@ module.exports = {
   options: {
     cacheDirectory: join(cache_path, 'babel-loader')
   }
-}
+};
