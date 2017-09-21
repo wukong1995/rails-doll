@@ -1,6 +1,8 @@
-@import './base.scss';
+@import './base';
 
 // shared
-@import './header.scss';
+@import './header';
 
-@import './welcome.scss';
+@import './welcome';
+
+@import './session/index';

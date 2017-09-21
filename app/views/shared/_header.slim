@@ -3,4 +3,10 @@
     .header-left
       p Hello, Rails
     .header-right
-      p Link
+      - if current_user
+        a href="javascript:;" #{@current_user.user_name}
+        a.logout href="/logout" logout
+
+      - else
+        a href='/signin' Signin
+        a href='/signup' Signup

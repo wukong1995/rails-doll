@@ -1,0 +1,23 @@
+.session.signup
+  canvas#particles-js
+  .session-form
+    .session__header Sign Up
+    - if @error
+      .session__error #{@error}
+    form method="POST" action='/signup'
+      input name="utf8" type="hidden" value="✓" /
+      = hidden_field_tag :authenticity_token, form_authenticity_token
+      .session-item
+        label email
+        input type="text" name="user[email]" /
+      .session-item
+        label username
+        input type="text" name="user[user_name]" /
+      .session-item
+        label password
+        input type="password" name="user[password]" /
+      .session-item
+        label pwconfirm
+        input type="password" name="pwconfirm" /
+      .session-item
+        button type="submit" id="btn-submmit" Signup
