@@ -1,19 +1,20 @@
 class SessionsController < ApplicationController
   def create
     user = User.find_by(email: user_params[:email])
-
-    if user == nil
-      user = User.new(user_params)
-      if user.valid? && user.save!
-        redirect_to signup_path
-      else
-        session[:error] = user.errors
-        redirect_to signup_path
-      end
-    else
+    if user != nil
       session[:error] = "用户名已存在， 请登录"
       redirect_to signup_path
+      return
     end
+
+    user = User.new(user_params)
+    if user.save
+      redirect_to signup_path
+    else
+      session[:error] = user.errors
+      redirect_to signup_path
+    end
+
   end
 
   def index
