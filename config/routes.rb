@@ -3,14 +3,17 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+  get 'welcome/index'
+
   resources :articles do
     resources :comments
   end
+
   get 'signin', to: 'sessions#index'
   get 'signup', to: 'sessions#new'
   get 'logout', to: 'sessions#logout'
   post 'signup', to: 'sessions#create'
   post 'signin', to: 'sessions#signin'
-  
-  get 'welcome/index'
+
+  get '*url', to: 'errors#render_404'
 end
