@@ -42,7 +42,7 @@ gem 'webpacker'
 gem 'pry'
 
 # authorization system
-#gem "pundit"
+gem "pundit"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
