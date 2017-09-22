@@ -38,6 +38,10 @@ gem "slim-rails"
 
 gem 'webpacker'
 
+# highlight
+# gem 'wirble'
+gem 'awesome_print'
+
 # debug
 gem 'pry'
 
