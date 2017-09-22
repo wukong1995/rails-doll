@@ -1,7 +1,5 @@
 class ArticlesController < ApplicationController
   protect_from_forgery with: :null_session
-  # 身份验证系统
-  # http_basic_authenticate_with name: "dhh", password: "secret", except: [:index, :show]
 
   def index
     @articles = Article.all
@@ -43,6 +41,8 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+
+    authorize @article
     @article.destroy!
     render json: { success_code: 1}
   end
