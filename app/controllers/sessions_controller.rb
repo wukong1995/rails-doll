@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: user_params[:email])
     if user != nil
-      session[:error] = "用户名已存在， 请登录"
+      flash[:error] = "用户名已存在， 请登录"
       redirect_to signup_path
       return
     end
@@ -11,21 +11,17 @@ class SessionsController < ApplicationController
     if user.save
       redirect_to signup_path
     else
-      session[:error] = user.errors
+      flash[:error] = user.errors
       redirect_to signup_path
     end
 
   end
 
   def index
-    @error = session[:error]
-    session[:error] = nil
     render 'signin'
   end
 
   def new
-    @error = session[:error]
-    session[:error] = nil
     render 'signup'
   end
 
@@ -36,7 +32,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_url
     else
-      session[:error] = "用户名或密码错误"
+      flash[:error] = "用户名或密码错误"
       redirect_to signin_path
     end
   end
