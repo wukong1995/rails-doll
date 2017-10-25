@@ -1,7 +1,10 @@
-/* global confirm */
 import $ from 'jquery';
 
-const deleteArticle = () => {
+const article = () => {
+  $('.js-edit-btn').on('click', function() {
+    // $(this).modal();
+    $('#myModal').modal('show');
+  });
 
   $('.delete-article').on('click', function() {
     if(confirm('Are you sure?')) {
@@ -20,4 +23,4 @@ const deleteArticle = () => {
   });
 };
 
-export default deleteArticle;
+export default article;

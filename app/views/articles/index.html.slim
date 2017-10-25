@@ -17,7 +17,20 @@ table.table.table-bordered
         td
           = link_to 'Show', article_path(article)
         td
-          = link_to 'Edit', edit_article_path(article)
+          button.js-edit-btn.btn.btn-primary type="button" Edit
+          / = link_to 'Edit', edit_article_path(article)
         td
           a.delete-article data-url=article_path(article) href="javascript:;" Destroy
 #react
+.modal.fade id="myModal" tabindex="-1" role="dialog" aria-hidden="true"
+  .modal-dialog role="document"
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true"
+          span aria-hidden="true" &times;
+        h4.modal-title Modal title
+      .modal-body
+        这是内容
+      .modal-footer
+        button.btn.btn-default type="button" data-dismiss="modal" Close
+        button.btn.btn-primary type="button"  Save changes
