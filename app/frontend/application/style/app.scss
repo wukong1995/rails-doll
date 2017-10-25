@@ -1,8 +1,9 @@
 @import './base';
+@import './common';
 
 // shared
 @import './header';
 
 @import './welcome';
 
-@import './session/index';
+@import './session';

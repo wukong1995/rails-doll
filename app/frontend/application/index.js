@@ -1,6 +1,6 @@
 /* eslint no-console:0 */
 
-import '../style/app.scss';
+import './style/app.scss';
 import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.min.js';
 

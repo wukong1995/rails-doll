@@ -1,12 +1,14 @@
 @import '~normalize.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
-* {
-  box-sizing: border-box;
-}
-
 html {
   font-size: 10px;
+}
+
+
+* {
+  box-sizing: border-box;
+  font-size: 1.4rem;
 }
 
 a {
