@@ -1,4 +1,5 @@
 @import '~normalize.css';
+@import '~bootstrap/dist/css/bootstrap.min.css';
 
 * {
   box-sizing: border-box;
@@ -16,10 +17,4 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.container {
-  max-width: 1200px;
-  padding: 0 15px;
-  margin: 0 auto;
 }
