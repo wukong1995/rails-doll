@@ -48,6 +48,9 @@ gem 'pry'
 # authorization system
 gem "pundit"
 
+# image Captcha
+gem 'rucaptcha'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
