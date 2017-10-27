@@ -1,3 +1,4 @@
+/* global confirm alert */
 import $ from 'jquery';
 
 const article = () => {
@@ -16,7 +17,12 @@ const article = () => {
         success: function(res) {
           if(res.success_code === 1) {
             $this.closest('tr').remove();
+          } else {
+            alert(res.error);
           }
+        },
+        error: function(res) {
+          alert(res.responseText);
         }
       });
     }
