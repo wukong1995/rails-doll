@@ -1,0 +1,19 @@
+= form_for @article, :html => { class: 'form-horizontal' } do |f|
+  .modal-header
+    button.close type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true"
+      span aria-hidden="true" &times;
+    h4.modal-title #{@formTitle}
+  .modal-body
+    input type="hidden" name="article[id]" value=@article.id
+    .form-group
+      label.col-sm-2.control-label Title
+      .col-sm-10
+        input type="text" class="form-control" name="article[title]" value=@article.title placeholder="Title" /
+    .form-group
+      label.col-sm-2.control-label Text
+      .col-sm-10
+        input type="text" class="form-control" name="article[text]" value=@article.text placeholder="Text" /
+
+  .modal-footer
+    button.btn.btn-default type="button" data-dismiss="modal" Close
+    button.btn.btn-primary type="submit"  Save changes

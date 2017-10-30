@@ -7,9 +7,16 @@ class SessionsController < ApplicationController
       return
     end
 
+    if !verify_rucaptcha?(params[:_rucaptcha])
+      flash[:error] = "验证码不正确"
+      redirect_to signup_path
+      return
+    end
+
     user = User.new(user_params)
     if user.save
       redirect_to signup_path
+      return
     else
       flash[:error] = user.errors
       redirect_to signup_path
@@ -31,6 +38,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(user_params[:password])
       session[:user_id] = user.id
       redirect_to root_url
+      return
     else
       flash[:error] = "用户名或密码错误"
       redirect_to signin_path
