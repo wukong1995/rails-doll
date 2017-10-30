@@ -1,3 +1,15 @@
-.header {
+.navbar {
   border-radius: 0;
+
+  .logout {
+    background-color: red;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    margin-top: .8rem;
+    color: #fff!important;
+
+    &:hover {
+      background-color: red!important;
+    }
+  }
 }
