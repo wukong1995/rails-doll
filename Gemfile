@@ -51,6 +51,9 @@ gem "pundit"
 # image Captcha
 gem 'rucaptcha'
 
+#
+gem "react-rails"
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
