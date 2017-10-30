@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  protect_from_forgery with: :null_session
+  skip_before_action :verify_authenticity_token, :only => [:destroy]
 
   before_action :get_article, only: [:show, :edit, :update, :destroy]
 
@@ -14,8 +14,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    # render plain: params[:articles].inspect
     @article = Article.new(article_params)
+    authorize @article
 
     if @article.save
       redirect_to articles_path
@@ -33,6 +33,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    authorize @article
     if @article.update(article_params)
       redirect_to articles_path
     else
