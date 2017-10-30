@@ -20,7 +20,7 @@
           td #{comment.commenter}
           td #{comment.body}
           td
-            button.js-delete-btn.btn.btn-danger type="button" data-url='#{article_path(@article)}/comments/#{comment.id}' Destroy
+            = link_to 'Destroy', [comment.article, comment], class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
   hr
   h4 Add a Comment
   .row
