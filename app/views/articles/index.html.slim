@@ -22,7 +22,7 @@
           td
             button.js-edit-btn.btn.btn-primary type="button" data-url=edit_article_path(article) Edit
           td
-            button.js-delete-btn.btn.btn-danger type="button" data-url=article_path(article) Destroy
+            = link_to 'Destroy', article_path(article), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
   .modal.fade id="myModal" tabindex="-1" role="dialog" aria-hidden="true"
     .modal-dialog role="document"
       .modal-content
