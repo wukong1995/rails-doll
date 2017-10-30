@@ -8,11 +8,11 @@ export const destroyAction = () => {
 
       $.ajax({
         url: $this.data('url'),
-        method: 'DELETE',
+        type: 'DELETE',
         success: function(res) {
           if(res.success_code === 1) {
             $this.closest('tr').remove();
-          } else {
+          } else if (res.error) {
             alert(res.error);
           }
         },

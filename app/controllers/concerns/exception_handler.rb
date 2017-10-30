@@ -5,7 +5,7 @@ module ExceptionHandler
       rescue_from ::ActiveRecord::RecordNotUnique, with: :record_not_unqiue
       rescue_from ::NameError, with: :error_occurred
       rescue_from ::ActionController::RoutingError, with: :error_occurred
-       rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+      rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     end
     private
 
@@ -13,9 +13,10 @@ module ExceptionHandler
       render file: "#{Rails.root}/public/404.html", layout: false, status: 404
     end
 
-    def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
-      redirect_to(request.referrer || root_path)
+    def user_not_authorized(exception)
+      policy_name = exception.policy.class.to_s.underscore
+      flash[:alert] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+      redirect_to request.referrer || root_path
     end
 
     def record_not_found(exception)

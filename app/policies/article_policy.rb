@@ -1,12 +1,7 @@
 class ArticlePolicy < ApplicationPolicy
-  attr_reader :user, :article
-
-  def initialize(user, article)
-    @user = user
-    @article = article
+  def create?
+    admin?
   end
-
-  def destroy?
-    user.admin?
-  end
+  alias update? create?
+  alias destroy? create?
 end
