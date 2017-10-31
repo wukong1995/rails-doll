@@ -1,4 +1,4 @@
-= form_for '/admin#{@article}', :html => { class: 'form-horizontal' } do |f|
+= form_with model: @article, url: admin_articles_path, html: { class: 'form-horizontal' } do |f|
   .modal-header
     button.close type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true"
       span aria-hidden="true" &times;
@@ -18,4 +18,4 @@
 
   .modal-footer
     button.btn.btn-default type="button" data-dismiss="modal" Close
-    button.btn.btn-primary type="submit"  Save changes
+    button.btn.btn-primary type="submit" Save changes
