@@ -51,6 +51,9 @@ gem "pundit"
 # image Captcha
 gem 'rucaptcha'
 
+# Annotations
+gem 'annotate'
+
 #
 gem "react-rails"
 
