@@ -5,6 +5,7 @@
     h4.modal-title #{@formTitle}
   .modal-body
     input type="hidden" name="article[id]" value=@article.id
+    input type="hidden" name="article[author_id]" value=current_user.id
     .form-group
       label.col-sm-2.control-label Title
       .col-sm-10
