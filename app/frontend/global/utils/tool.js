@@ -16,3 +16,13 @@ export const runPage = (path, fn) => {
     fn();
   }
 };
+
+/**
+ * click to updating rucaptcha
+ */
+export const updateRucaptcha = () => {
+  const $rucaptcha = $('.js-rucaptcha-image');
+  $rucaptcha.on('click', () => {
+    $rucaptcha.attr('src', $rucaptcha.attr('src'));
+  });
+};

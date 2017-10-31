@@ -14,7 +14,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def create
-    @article = Article.create!(article_params)
+    Article.create!(article_params)
     redirect_to admin_articles_path
   end
 
@@ -32,7 +32,7 @@ class Admin::ArticlesController < Admin::BaseController
   def destroy
     authorize @article
     @article.destroy!
-    redirect_to admin_articles_path
+    # redirect_to admin_articles_path
   end
 
   private
