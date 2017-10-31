@@ -1,4 +1,4 @@
-= form_with model: @article, url: admin_articles_path, html: { class: 'form-horizontal' } do |f|
+= form_for [:admin, @article], html: { class: 'form-horizontal' } do |f|
   .modal-header
     button.close type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true"
       span aria-hidden="true" &times;
@@ -14,7 +14,6 @@
       label.col-sm-2.control-label Text
       .col-sm-10
         input type="text" class="form-control" name="article[text]" value=@article.text placeholder="Text" /
-
 
   .modal-footer
     button.btn.btn-default type="button" data-dismiss="modal" Close

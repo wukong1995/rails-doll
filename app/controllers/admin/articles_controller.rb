@@ -14,9 +14,8 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def create
-    @article = Article.new(article_params)
-    @article.save!
-    redirect_to admin_articles
+    @article = Article.create!(article_params)
+    redirect_to admin_articles_path
   end
 
   def edit

@@ -1,10 +1,11 @@
 module ExceptionHandler
   extend ActiveSupport::Concern
     included do
-      rescue_from ::ActiveRecord::RecordNotFound, with: :render_404
-      rescue_from ::ActiveRecord::RecordNotUnique, with: :record_not_unqiue
+      rescue_from ActiveRecord::RecordNotFound, with: :render_404
+      rescue_from ActiveRecord::RecordNotUnique, with: :record_not_unqiue
+      rescue_from ActiveRecord::RecordInvalid, with: :record_error_message
+      rescue_from ActionController::RoutingError, with: :error_occurred
       rescue_from ::NameError, with: :error_occurred
-      rescue_from ::ActionController::RoutingError, with: :error_occurred
       rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
     end
     private
@@ -21,6 +22,11 @@ module ExceptionHandler
 
     def record_not_found(exception)
       render json: {error: exception.message}.to_json, status: 404
+    end
+
+    def record_error_message(e)
+      flash[:alert] = e.message
+      redirect_to action: "index"
     end
 
     def error_occurred(exception)
