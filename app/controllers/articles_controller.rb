@@ -4,7 +4,6 @@ class ArticlesController < ApplicationController
   before_action :get_article, only: [:show, :edit, :update, :destroy]
 
   def index
-    binding.pry
     @articles = Article.all
   end
 
