@@ -20,7 +20,10 @@
           td #{comment.user.user_name}
           td #{comment.body}
           td
-            = link_to 'Destroy', [comment.article, comment], class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
+            - if comment.user === current_user
+              = link_to 'Destroy', [comment.article, comment], class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
+            - else
+              p it is not yours
   hr
   h4 Add a Comment
   .row
