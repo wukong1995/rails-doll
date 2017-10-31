@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
+// import Select from 'react-select';
 
-import 'react-select/dist/react-select.css';
+// import 'react-select/dist/react-select.css';
 
 class Form extends React.Component {
-  logChange(val) {
-    console.log('Selected: ', val);
+  state = {
+    text: true
+  }
+
+  switch() {
+    console.log("sdhjsdjj")
+    this.setState({
+      text: !this.state.text
+    })
   }
 
   render() {
@@ -16,12 +23,10 @@ class Form extends React.Component {
     ];
 
     return (
-      <Select
-        name="form-field-name"
-        value="one"
-        options={options}
-        onChange={() => {this.logChange();}}
-      />
+      <div>
+        <p>状态：{this.state.text ? 'jdfjjj' : 'false'}</p>
+        <button type="button" onClick={() => {this.switch();}}>点我试试</button>
+      </div>
     );
   }
 };

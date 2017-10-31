@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
+  has_many :articles
+  has_many :comments
 
   validates :email, presence: true
   validates :user_name, presence: true, length: { minimum: 4, maxnum: 20}
