@@ -16,7 +16,7 @@ class Admin::ArticlesController < Admin::BaseController
   def create
     @article = Article.new(article_params)
     @article.save!
-    redirect_to articles_path
+    redirect_to admin_articles
   end
 
   def edit
@@ -27,13 +27,13 @@ class Admin::ArticlesController < Admin::BaseController
   def update
     authorize @article
     @article.update(article_params)
-    redirect_to articles_path
+    redirect_to admin_articles_path
   end
 
   def destroy
     authorize @article
     @article.destroy!
-    render json: { success_code: 1}
+    redirect_to admin_articles_path
   end
 
   private
