@@ -2,12 +2,15 @@
   = display_notice_and_alert
 
   h1 List Articles
+  button.js-edit-btn.btn.btn-primary type="button" data-url="/admin/articles/new" New
   table.table.table-bordered
     thead
       tr
         th Title
         th Text
         th show
+        th edit
+        th destroy
     tbody
       - @articles.each do |article|
         tr
@@ -15,6 +18,10 @@
           td #{article.text}
           td
             = link_to 'Show', article_path(article)
+          td
+            button.js-edit-btn.btn.btn-primary type="button" data-url="/admin/articles/#{article.id}/edit" Edit
+          td
+            = link_to 'Destroy', '/admin/#{article_path(article)}', class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
   .modal.fade id="myModal" tabindex="-1" role="dialog" aria-hidden="true"
     .modal-dialog role="document"
       .modal-content

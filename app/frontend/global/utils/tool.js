@@ -1,3 +1,4 @@
+import $ from 'jquery';
 /**
  * page run corresponding function
  * @param {array | string} path

@@ -11,7 +11,11 @@ html
   head
 
   body id=page_id
-    = yield
+    = render 'shared/header', admin: true
+    .main-container
+      = render 'admin/shared/sidebar'
+      .page-container
+        = yield
 
     = javascript_pack_tag 'admin'
   body

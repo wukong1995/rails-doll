@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'statistics#index'
     resources :statistics, only: :index
-    # resources :articles, only: %i[index show edit create]
+    resources :articles, except: %i[show]
   end
 
   get '*url', to: 'errors#render_404'
