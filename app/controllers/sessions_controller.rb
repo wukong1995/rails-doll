@@ -1,13 +1,13 @@
 class SessionsController < ApplicationController
   def create
     user = User.find_by(email: user_params[:email])
-    if user != nil
-      redirect_to signup_path, :alert => "用户名已存在， 请登录"
+    unless !user.nil?
+      redirect_to signup_path, :alert => '用户名已存在， 请登录'
       return
     end
 
-    if !verify_rucaptcha?(params[:_rucaptcha])
-      redirect_to signup_path, :alert => "验证码不正确"
+    unless !verify_rucaptcha?(params[:_rucaptcha])
+      redirect_to signup_path, :alert => '验证码不正确'
       return
     end
 
@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
       redirect_to root_url
       return
     else
-      flash[:error] = "用户名或密码错误"
+      flash[:error] = '用户名或密码错误'
       redirect_to signin_path
     end
   end
@@ -45,7 +45,8 @@ class SessionsController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:email, :user_name, :password)
-    end
+
+  def user_params
+    params.require(:user).permit(:email, :user_name, :password)
+  end
 end

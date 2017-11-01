@@ -2,7 +2,7 @@
   .modal-header
     button.close type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true"
       span aria-hidden="true" &times;
-    h4.modal-title #{@formTitle}
+    h4.modal-title #{@form_title}
   .modal-body
     input type="hidden" name="article[id]" value=@article.id
     input type="hidden" name="article[author_id]" value=current_user.id

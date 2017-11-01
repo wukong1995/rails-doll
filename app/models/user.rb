@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true
   validates :password, presence: true
-  validates :user_name, presence: true, length: { minimum: 4, maxnum: 20}
+  validates :user_name, presence: true, length: { minimum: 4, maxnum: 20 }
 end
 
 # == Schema Information

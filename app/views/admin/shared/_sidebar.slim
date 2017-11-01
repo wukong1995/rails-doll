@@ -1,9 +1,9 @@
 .sidebar
   ul.nav.nav-sidebar
-    li class="active"
+    li class="#{'active' if controller_name == 'statistics'}"
       a href="/admin"
         | Index
-    li
+    li  class="#{'active' if controller_name == 'articles'}"
       a href="/admin/articles"
         | Articles
     li

@@ -1,7 +1,7 @@
 class Admin::ArticlesController < Admin::BaseController
   skip_before_action :verify_authenticity_token, :only => [:destroy]
 
-  before_action :get_article, only: [:show, :edit, :update, :destroy]
+  before_action :get_article, only: %i[:show, :edit, :update, :destroy]
 
   def index
     @articles = Article.all
@@ -9,7 +9,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def new
     @article = Article.new
-    @formTitle = "New article"
+    @form_title = 'New article'
     render 'form', layout: false
   end
 
@@ -19,7 +19,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def edit
-    @formTitle = "Edit article"
+    @form_title = 'Edit article'
     render 'form', layout: false
   end
 
@@ -36,11 +36,12 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   private
-    def article_params
-      params.require(:article).permit(:title, :text, :author_id)
-    end
 
-    def get_article
-      @article = Article.find(params[:id])
-    end
+  def article_params
+    params.require(:article).permit(:title, :text, :author_id)
+  end
+
+  def get_article
+    @article = Article.find(params[:id])
+  end
 end
