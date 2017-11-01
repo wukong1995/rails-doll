@@ -12,6 +12,9 @@
         - if current_user
           li
             a href="javascript:;" #{current_user.user_name}
+          - if current_user.role.include? 'admin'
+            li
+             a href="/admin" admin
           li
            a.logout href="/logout" logout
         - else
