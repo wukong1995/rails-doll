@@ -4,7 +4,7 @@ class Admin::ArticlesController < Admin::BaseController
   before_action :find_article, only: %i[show edit update destroy]
 
   def index
-    @articles = Article.all
+    @articles = Article.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def new
