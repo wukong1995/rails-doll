@@ -54,6 +54,9 @@ gem 'rucaptcha'
 # Annotations
 gem 'annotate'
 
+# paginator
+gem 'kaminari'
+
 #
 gem "react-rails"
 

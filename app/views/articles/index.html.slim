@@ -15,6 +15,8 @@
           td #{article.text}
           td
             = link_to 'Show', article_path(article)
+  = paginate @articles
+
   .modal.fade id="myModal" tabindex="-1" role="dialog" aria-hidden="true"
     .modal-dialog role="document"
       .modal-content
