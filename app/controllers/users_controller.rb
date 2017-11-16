@@ -1,2 +1,23 @@
 class UsersController < ApplicationController
+  def create
+    user = User.find_by(email: user_params[:email])
+    unless user.nil?
+      redirect_to signup_path, :alert => '用户名已存在， 请登录'
+      return
+    end
+
+    unless verify_rucaptcha?(params[:_rucaptcha])
+      redirect_to signup_path, :alert => '验证码不正确'
+      return
+    end
+
+    @user = User.new(user_params)
+
+    if !@user.save
+      redirect_to signup_path, :alert => @user.errors
+    end
+  end
+
+  def index
+  end
 end

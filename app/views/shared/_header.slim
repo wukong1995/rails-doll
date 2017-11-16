@@ -11,7 +11,7 @@
       ul.nav.navbar-nav
         - if current_user
           li
-            a href="javascript:;" #{current_user.user_name}
+            a href="javascript:;" #{current_user.name}
           - if current_user.role.include? 'admin'
             li
              a href="/admin" admin

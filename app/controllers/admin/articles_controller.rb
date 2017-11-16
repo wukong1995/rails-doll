@@ -1,7 +1,7 @@
 class Admin::ArticlesController < Admin::BaseController
   skip_before_action :verify_authenticity_token, :only => [:destroy]
 
-  before_action :load_article, only: %i[:show, :edit, :update, :destroy]
+  before_action :find_article, only: %i[show edit update destroy]
 
   def index
     @articles = Article.all
@@ -14,7 +14,9 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def create
-    Article.create!(article_params)
+    @article = Article.new(article_params)
+    authorize @article
+    @article.save!
     redirect_to admin_articles_path
   end
 
@@ -24,13 +26,11 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def update
-    authorize @article
     @article.update(article_params)
     redirect_to admin_articles_path
   end
 
   def destroy
-    authorize @article
     @article.destroy!
     # redirect_to admin_articles_path
   end
@@ -41,7 +41,8 @@ class Admin::ArticlesController < Admin::BaseController
     params.require(:article).permit(:title, :text, :author_id)
   end
 
-  def load_article
+  def find_article
     @article = Article.find(params[:id])
+    authorize @article
   end
 end
