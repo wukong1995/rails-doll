@@ -7,16 +7,17 @@
     "clean": "rm -f public/packs/*"
   },
   "dependencies": {
-    "@rails/webpacker": "^3.0.1",
+    "@rails/webpacker": "^3.0.2",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "3",
     "expose-loader": "^0.7.3",
     "jquery": "^3.2.1",
-    "normalize.css": "^7.0.0",
     "particlesjs": "^2.0.2",
+    "prop-types": "^15.6.0",
     "rails-ujs": "^5.1.4",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react_ujs": "^2.4.0"
   },
   "devDependencies": {
     "eslint": "^3.16.1",
@@ -24,7 +25,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
-    "webpack-dev-server": "^2.8.2"
+    "webpack-dev-server": "^2.9.3"
   },
   "author": "wukong",
   "license": "ISC"

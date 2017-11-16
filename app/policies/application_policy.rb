@@ -35,6 +35,10 @@ class ApplicationPolicy
     false
   end
 
+  def signin?
+    user?
+  end
+
   def admin?
     user.role.include? 'admin'
   end

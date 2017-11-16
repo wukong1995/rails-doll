@@ -1,14 +1,12 @@
 
 import './style/app.scss';
-import $ from 'jquery';
-import 'bootstrap/dist/js/bootstrap.min.js';
-
-import article from './page/article';
 import particles from './page/session';
 
-import { runPage } from 'utils/tool';
+import { runPage, updateRucaptcha } from 'utils/tool';
 
-export const application = () => {
-  runPage('articles-index', article);
+const application = () => {
   runPage(['sessions-index','sessions-new'], particles);
+  runPage('sessions-new', updateRucaptcha);
 };
+
+export default application;

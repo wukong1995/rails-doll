@@ -1,5 +1,5 @@
 .navbar.navbar-inverse.header
-  .container
+  div class="#{defined?(admin) ? 'container-fluid' : 'container' }"
     .navbar-header
       button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
             span.sr-only Toggle navigation
@@ -11,7 +11,10 @@
       ul.nav.navbar-nav
         - if current_user
           li
-            a href="javascript:;" #{current_user.user_name}
+            a href="javascript:;" #{current_user.name}
+          - if current_user.role.include? 'admin'
+            li
+             a href="/admin" admin
           li
            a.logout href="/logout" logout
         - else
