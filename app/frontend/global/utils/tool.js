@@ -1,3 +1,4 @@
+import $ from 'jquery';
 /**
  * page run corresponding function
  * @param {array | string} path
@@ -14,4 +15,14 @@ export const runPage = (path, fn) => {
   if (isAllow) {
     fn();
   }
+};
+
+/**
+ * click to updating rucaptcha
+ */
+export const updateRucaptcha = () => {
+  const $rucaptcha = $('.js-rucaptcha-image');
+  $rucaptcha.on('click', () => {
+    $rucaptcha.attr('src', $rucaptcha.attr('src'));
+  });
 };

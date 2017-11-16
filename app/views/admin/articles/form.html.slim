@@ -1,10 +1,11 @@
-= form_for @article, :html => { class: 'form-horizontal' } do |f|
+= form_for [:admin, @article], html: { class: 'form-horizontal' } do |f|
   .modal-header
     button.close type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true"
       span aria-hidden="true" &times;
-    h4.modal-title #{@formTitle}
+    h4.modal-title #{@form_title}
   .modal-body
     input type="hidden" name="article[id]" value=@article.id
+    input type="hidden" name="article[author_id]" value=current_user.id
     .form-group
       label.col-sm-2.control-label Title
       .col-sm-10
@@ -16,4 +17,4 @@
 
   .modal-footer
     button.btn.btn-default type="button" data-dismiss="modal" Close
-    button.btn.btn-primary type="submit"  Save changes
+    button.btn.btn-primary type="submit" Save changes
