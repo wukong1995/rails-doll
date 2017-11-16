@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
   def create
     user = User.find_by(email: user_params[:email])
-    unless !user.nil?
+    unless user.nil?
       redirect_to signup_path, :alert => '用户名已存在， 请登录'
       return
     end
 
-    unless !verify_rucaptcha?(params[:_rucaptcha])
+    unless verify_rucaptcha?(params[:_rucaptcha])
       redirect_to signup_path, :alert => '验证码不正确'
       return
     end
