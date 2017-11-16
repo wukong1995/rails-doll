@@ -33,8 +33,13 @@ en:
   date:
     formats:
       default: "%Y-%m-%d"
-      long: "%Y年%b%d日"
-      short: "%b%d日"
+      long: "%Y年%m月%d日"
+      short: "%m月%d日"
+  time:
+    formats:
+      default: "%Y-%m-%d"
+      long: "%Y年%m月%d日"
+      short: "%m月%d日"
   pundit:
     default: 'You cannot perform this action.'
     post_policy:

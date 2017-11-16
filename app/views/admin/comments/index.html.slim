@@ -17,5 +17,4 @@
           td #{comment.body}
           td #{comment.user.name}
           td
-            = l(comment.created_at)
-            / TODO format date
+            = l(comment.created_at, format: :long)
