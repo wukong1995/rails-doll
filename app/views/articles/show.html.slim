@@ -20,20 +20,21 @@
           td #{comment.user.user_name}
           td #{comment.body}
           td
-            - if comment.user === current_user
+            - if comment.user == current_user
               = link_to 'Destroy', [comment.article, comment], class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' }
             - else
               p it is not yours
   hr
-  h4 Add a Comment
-  .row
-    .col-md-6
-      = form_for [@article, @article.comments.build], :html => { class: 'form-horizontal' } do |f|
-        input type="hidden" name="comment[user_id]" value=current_user.id
-        .form-group
-          = f.label :body, class: 'col-sm-2 control-label'
-          .col-sm-10
-            = f.text_area :body, class: 'form-control'
-        = f.submit class: 'btn btn-default'
+  - if current_user
+    h4 Add a Comment
+    .row
+      .col-md-6
+        = form_for [@article, @article.comments.build], :html => { class: 'form-horizontal' } do |f|
+          input type="hidden" name="comment[user_id]" value=current_user.id
+          .form-group
+            = f.label :body, class: 'col-sm-2 control-label'
+            .col-sm-10
+              = f.text_area :body, class: 'form-control'
+          = f.submit class: 'btn btn-default'
 
   = link_to 'Back', articles_path
