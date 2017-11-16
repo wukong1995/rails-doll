@@ -16,4 +16,6 @@
             = link_to comment.article.title, article_path(comment.article)
           td #{comment.body}
           td #{comment.user.name}
-          td #{l(comment.created_at, format: :long)}
+          td
+            = l(comment.created_at)
+            / TODO format date

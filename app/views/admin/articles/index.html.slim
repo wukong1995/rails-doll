@@ -18,8 +18,9 @@
         tr
           td #{article.title}
           td #{article.text}
-          td #{article.created_at}
-          td #{article.user.name}
+          td
+            =l(article.created_at, format: :long)
+          td #{article.author.name}
           td
             = link_to 'Show', article_path(article)
           td
