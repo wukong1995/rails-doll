@@ -17,7 +17,7 @@
     tbody
       - @article.comments.each do |comment|
         tr
-          td #{comment.user.user_name}
+          td #{comment.user.name}
           td #{comment.body}
           td
             - if comment.user == current_user

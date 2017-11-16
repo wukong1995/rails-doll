@@ -35,3 +35,7 @@ en:
    post_policy:
      update?: 'You cannot edit this post!'
      create?: 'You cannot create posts!'
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      long: "%Y年%b%d日"

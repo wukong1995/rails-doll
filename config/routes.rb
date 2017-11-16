@@ -9,15 +9,16 @@ Rails.application.routes.draw do
   end
 
   get 'signin', to: 'sessions#index'
-  get 'signup', to: 'sessions#new'
+  post 'signin', to: 'sessions#create'
   get 'logout', to: 'sessions#logout'
-  post 'signup', to: 'sessions#create'
-  post 'signin', to: 'sessions#signin'
+  get 'signup', to: 'users#index'
+  post 'signup', to: 'users#create'
 
   namespace :admin do
     root to: 'statistics#index'
     resources :statistics, only: :index
     resources :articles, except: %i[show]
+    resources :comments, only: %i[index]
   end
 
   get '*url', to: 'errors#render_404'
