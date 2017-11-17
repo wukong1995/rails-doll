@@ -16,9 +16,14 @@ module ExceptionHandler
   end
 
   def user_not_authorized(exception)
-    policy_name = exception.policy.class.to_s.underscore
-    flash[:alert] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
-    redirect_to request.referrer || root_path
+    respond_to do |format|
+      format.html do
+        policy_name = exception.policy.class.to_s.underscore
+        flash[:alert] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+        redirect_back fallback_location: root_path
+      end
+      format.json { render json: { errors: [t('pundit.no_authorized')] }, status: 403 }
+    end
   end
 
   def record_not_found(exception)

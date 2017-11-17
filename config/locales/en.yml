@@ -52,3 +52,4 @@ en:
     post_policy:
       update?: 'You cannot edit this post!'
       create?: 'You cannot create posts!'
+      no_authorized: 'You do not have permission to enter.'
