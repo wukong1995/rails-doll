@@ -18,3 +18,11 @@ end
 #  updated_at :datetime         not null
 #  author_id  :uuid
 #
+# Indexes
+#
+#  index_articles_on_author_id  (author_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (author_id => users.id)
+#

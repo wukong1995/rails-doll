@@ -51,9 +51,6 @@ gem "pundit"
 # image Captcha
 gem 'rucaptcha'
 
-# Annotations
-gem 'annotate'
-
 # paginator
 gem 'kaminari'
 
@@ -69,6 +66,9 @@ group :development, :test do
   gem "capistrano", "~> 3.9"
   gem 'selenium-webdriver'
   gem 'rspec-rails'
+
+  # Annotations
+  gem 'annotate'
 end
 
 
