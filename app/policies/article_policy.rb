@@ -1,8 +1,9 @@
 class ArticlePolicy < ApplicationPolicy
-  def create?
+  def index?
     admin?
   end
 
+  alias create? index?
   alias update? create?
   alias destroy? create?
 end
