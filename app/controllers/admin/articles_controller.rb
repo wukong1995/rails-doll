@@ -33,7 +33,7 @@ class Admin::ArticlesController < Admin::BaseController
 
   def destroy
     @article.destroy!
-    # redirect_to admin_articles_path
+    redirect_to admin_articles_path
   end
 
   private
