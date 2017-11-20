@@ -14,7 +14,7 @@ const Sidebar = () => {
       >
         <Menu.Item key="1">
           <Icon type="pie-chart" />
-          <Link to="/admin/index">首页</Link>
+          <Link to="/index">首页</Link>
         </Menu.Item>
         <SubMenu key="sub1" title={<span><Icon type="mail" /><span>订单</span></span>}>
           <Menu.Item key="2">外卖处理</Menu.Item>
@@ -22,7 +22,9 @@ const Sidebar = () => {
           <Menu.Item key="4">订单查询</Menu.Item>
         </SubMenu>
         <SubMenu key="sub2" title={<span><Icon type="mail" /><span>会员</span></span>}>
-          <Menu.Item key="3">全部会员</Menu.Item>
+          <Menu.Item key="3">
+            <Link to="/members">全部会员</Link>
+          </Menu.Item>
         </SubMenu>
         <SubMenu key="sub3" title={<span><Icon type="mail" /><span>营收</span></span>}>
           <Menu.Item key="4">订单查询</Menu.Item>

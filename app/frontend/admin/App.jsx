@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import Index from './main/Index';
 import Sidebar from './shared/Sidebar';
+import Index from './main/Index';
+import Members from './main/Members';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/index" />} />
             <Route path="/index" component={Index} />
+            <Route path="/members" component={Members} />
             <Route path="/*" render={() => <Redirect to="/index" />} />
           </Switch>
         </div>
