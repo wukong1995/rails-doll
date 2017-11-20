@@ -17,8 +17,6 @@ end
 #  name            :string           not null
 #  verify_code     :integer
 #  introduction    :string
-#  create_at       :datetime         default(Wed, 20 Sep 2017 05:37:16 UTC +00:00), not null
-#  update_at       :datetime         default(Wed, 20 Sep 2017 05:37:16 UTC +00:00), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string           default(""), not null
