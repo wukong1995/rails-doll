@@ -16,9 +16,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'statistics#index'
-    resources :statistics, only: :index
-    resources :articles, except: %i[show]
-    resources :comments, only: %i[index]
+    get '*path', to: 'statistics#index', constraints: ->(r) { r.format.html? }
   end
 
   get '*url', to: 'errors#render_404'
