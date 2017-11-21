@@ -6,8 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :password
       t.integer :verify_code
       t.string :introduction
-      t.datetime :create_at
-      t.datetime :update_at
 
       t.timestamps
     end
