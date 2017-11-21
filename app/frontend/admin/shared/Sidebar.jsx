@@ -24,7 +24,7 @@ const Sidebar = () => {
           <Menu.Item key="3"><Link to="/members">全部会员</Link></Menu.Item>
         </SubMenu>
         <SubMenu key="sub3" title={<span><Icon type="printer" /><span>营收</span></span>}>
-          <Menu.Item key="4">订单查询</Menu.Item>
+          <Menu.Item key="16">订单查询</Menu.Item>
         </SubMenu>
         <Menu.Item key="4">
           <Icon type="appstore-o" />
