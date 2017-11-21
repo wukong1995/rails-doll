@@ -1,6 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
-import { Table, Button } from 'antd';
+import { Table, Button, Switch } from 'antd';
 
 const columns = [{
   title: '邮箱',
@@ -18,10 +18,7 @@ const columns = [{
   title: '操作',
   key: 'action',
   render: () => (
-    <span>
-      <Button type="primary">解禁</Button>&nbsp;&nbsp;
-      <Button type="danger">禁用</Button>
-    </span>
+    <Switch checkedChildren="正常" unCheckedChildren="冻结" defaultChecked />
   )
 }];
 
