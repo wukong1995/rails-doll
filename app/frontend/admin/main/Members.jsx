@@ -17,8 +17,11 @@ const columns = [{
 }, {
   title: '操作',
   key: 'action',
-  render: (text, record) => (
-    <a href="#">Delete</a>
+  render: () => (
+    <span>
+      <Button type="primary">解禁</Button>&nbsp;&nbsp;
+      <Button type="danger">禁用</Button>
+    </span>
   )
 }];
 
@@ -50,10 +53,13 @@ class Members extends React.Component {
     this.getData();
   }
 
-  getData = () => {
+  getData = (page = 1) => {
     $.ajax({
       url: '/admin/members',
       type: 'GET',
+      data: {
+        page
+      },
       success: (res) => {
         this.setState({
           data: res.members,
@@ -74,23 +80,19 @@ class Members extends React.Component {
       onChange: this.onSelectChange,
     };
 
-    const hasSelected = selectedRowKeys.length > 0;
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
           <Button
             type="primary"
             onClick={this.start}
-            disabled={!hasSelected}
+            disabled={selectedRowKeys.length <= 0}
             loading={loading}
           >
             禁用账户
           </Button>
-          <span style={{ marginLeft: 8 }}>
-            {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-          </span>
         </div>
-        <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ total }} rowKey={'id'} />
+        <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ total, onChange: (page, pageSize) => { this.getData(page); } }} rowKey={'id'} />
       </div>
     );
   }
