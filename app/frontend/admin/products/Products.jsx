@@ -81,7 +81,30 @@ class Products extends React.Component {
   }
 
   deleteOne(id) {
-    console.log(id);
+    Modal.confirm({
+      title: 'Confirm',
+      content: '确认删除',
+      okText: '确认',
+      cancelText: '取消',
+      onOk: () => {
+        $.ajax({
+          url: `/admin/products/${id}`,
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+          },
+          type: 'DELETE',
+          success: (res) => {
+            if (res === undefined) {
+              this.fetchData();
+            }
+          },
+          error: (err) => {
+            alert('请刷新重试');
+            console.log(err);
+          }
+        });
+      }
+    });
   }
 
   edit(id) {

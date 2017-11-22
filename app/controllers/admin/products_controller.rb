@@ -19,6 +19,10 @@ class Admin::ProductsController < Admin::BaseController
     @product.update!(product_params)
   end
 
+  def destroy
+    @product.destroy!
+  end
+
   private
 
   def load_product
