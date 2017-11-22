@@ -23,6 +23,14 @@ class Admin::ProductsController < Admin::BaseController
     @product.destroy!
   end
 
+
+  def destroy_multiple
+    params[:ids].each do |id|
+      @product = Product.find(id)
+      @product.destroy!
+    end
+  end
+
   private
 
   def load_product
