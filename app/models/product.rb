@@ -3,6 +3,8 @@ class Product < ApplicationRecord
 
   validates :name, presence: true
   validates :price, presence: true
+
+  acts_as_paranoid
 end
 
 # == Schema Information
