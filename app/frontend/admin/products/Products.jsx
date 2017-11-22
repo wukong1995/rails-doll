@@ -1,7 +1,6 @@
 import React from 'react';
-import $ from 'jquery';
 import { Table, Button, Switch, Modal } from 'antd';
-import { deleteAction, getAction, fetchAction } from 'utils/ajax_action';
+import { deleteAction, getAction, fetchAction, deleteMultipleAction } from 'utils/ajax_action';
 import ProductForm from './ProductForm';
 
 class Products extends React.Component {
@@ -115,13 +114,31 @@ class Products extends React.Component {
   deleteSelect = () => {
     this.setState({ loading: true });
 
-    // ajax request after empty completing
-    setTimeout(() => {
-      this.setState({
-        selectedRowKeys: [],
-        loading: false,
-      });
-    }, 1000);
+    Modal.confirm({
+      title: 'Confirm',
+      content: '确认删除',
+      okText: '确认',
+      cancelText: '取消',
+      onOk: () => {
+        deleteMultipleAction('/admin/delete/multiple', this.state.selectedRowKeys)
+          .done((res) => {
+            if (res === undefined) {
+              this.fetchData();
+              this.setState({
+                selectedRowKeys: [],
+                loading: false
+              });
+            }
+          })
+          .fail((err) => {
+            alert('请刷新重试');
+            this.setState({
+              loading: false
+            });
+            console.log(err);
+          });
+      }
+    });
   }
 
   create = () => {
@@ -154,7 +171,7 @@ class Products extends React.Component {
             loading={loading}
           >
             删除商品
-          </Button>
+          </Button>&nbsp;&nbsp;
           <Button
             type="primary"
             onClick={this.create}

@@ -10,6 +10,19 @@ export const deleteAction = (url) => {
   });
 };
 
+export const deleteMultipleAction = (url, ids) => {
+  return $.ajax({
+    url,
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+    },
+    type: 'DELETE',
+    data: {
+      ids
+    }
+  });
+};
+
 export const getAction = (url) => {
   return $.ajax({
     url,
