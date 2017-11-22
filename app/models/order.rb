@@ -4,6 +4,8 @@ class Order < ApplicationRecord
 
   validates :price, presence: true
   validates :actual_price, presence: true
+
+  acts_as_paranoid
 end
 
 # == Schema Information
