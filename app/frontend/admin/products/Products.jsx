@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import { Table, Button, Switch, Modal } from 'antd';
+import { deleteAction, getAction, fetchAction } from 'utils/ajax_action';
 import ProductForm from './ProductForm';
 
 class Products extends React.Component {
@@ -61,23 +62,17 @@ class Products extends React.Component {
   }
 
   fetchData = (page = 1) => {
-    $.ajax({
-      url: '/admin/products',
-      type: 'GET',
-      data: {
-        page
-      },
-      success: (res) => {
+    fetchAction('/admin/products', page)
+      .done((res) => {
         this.setState({
           data: res.products,
           total: res.total
         });
-      },
-      error: (err) => {
+      })
+      .fail((err) => {
         alert('请刷新重试');
         console.log(err);
-      }
-    });
+      });
   }
 
   deleteOne(id) {
@@ -87,47 +82,34 @@ class Products extends React.Component {
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
-        $.ajax({
-          url: `/admin/products/${id}`,
-          headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-          },
-          type: 'DELETE',
-          success: (res) => {
+        deleteAction(`/admin/products/${id}`)
+          .done((res) => {
             if (res === undefined) {
               this.fetchData();
             }
-          },
-          error: (err) => {
+          })
+          .fail((err) => {
             alert('请刷新重试');
             console.log(err);
-          }
-        });
+          });
       }
     });
   }
 
   edit(id) {
-    $.ajax({
-      url: `/admin/products/${id}`,
-      type: 'GET',
-      dataType: 'json',
-      headers: {
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
-      },
-      success: (product) => {
+    getAction(`/admin/products/${id}`)
+      .done((product) => {
         this.setState({
           product,
           isOpenModal: true
         });
-      },
-      error: (res) => {
+      })
+      .fail((res) => {
         Modal.error({
           title: '错误',
           content: res.responseText
         });
-      }
-    });
+      });
   }
 
   deleteSelect = () => {
