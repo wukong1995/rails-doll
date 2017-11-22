@@ -1,48 +1,58 @@
 import React from 'react';
 import $ from 'jquery';
-import { Table, Button, Switch } from 'antd';
+import { Table, Button, Switch, Modal } from 'antd';
 import ProductForm from './ProductForm';
 
-const columns = [{
-  title: '商品名称',
-  key: 'name',
-  dataIndex: 'name',
-}, {
-  title: '商品描述',
-  key: 'description',
-  dataIndex: 'description',
-}, {
-  title: '价格',
-  key: 'price',
-  dataIndex: 'price',
-}, {
-  title: '折扣',
-  key: 'discount',
-  dataIndex: 'discount',
-}, {
-  title: '是否上架',
-  key: 'is_add',
-  dataIndex: 'is_add',
-  render: (text) => (
-    <Switch checkedChildren="上架" unCheckedChildren="下架" defaultChecked={text} />
-  )
-}, {
-  title: '创建时间',
-  key: 'created_at',
-  dataIndex: 'created_at',
-}];
-
 class Products extends React.Component {
+  constructor(props) {
+    super(props);
+    this.columns = [{
+      title: '商品名称',
+      key: 'name',
+      dataIndex: 'name',
+    }, {
+      title: '价格',
+      key: 'price',
+      dataIndex: 'price',
+    }, {
+      title: '折扣',
+      key: 'discount',
+      dataIndex: 'discount',
+    }, {
+      title: '是否上架',
+      key: 'is_add',
+      dataIndex: 'is_add',
+      render: (is_add) => (
+        <Switch checkedChildren="上架" unCheckedChildren="下架" defaultChecked={is_add} />
+      )
+    }, {
+      title: '创建时间',
+      key: 'created_at',
+      dataIndex: 'created_at',
+    }, {
+      title: '操作',
+      key: 'action',
+      dataIndex: 'id',
+      render: (id) => (
+        <span>
+          <Button type="primary" onClick={() => { this.edit(id); }}>编辑</Button>&nbsp;&nbsp;
+          <Button type="danger" onClick={() => { this.deleteOne(id); }}>删除</Button>
+        </span>
+      )
+    }];
+  }
+
   state = {
     selectedRowKeys: [], // Check here to configure the default column
     loading: false,
     isOpenModal: false,
     data: [],
-    total: 0
+    total: 0,
+    product: {}
   };
 
   componentDidMount() {
-    this.getData();
+    this.fetchData();
   }
 
   onSelectChange = (selectedRowKeys) => {
@@ -50,7 +60,7 @@ class Products extends React.Component {
     this.setState({ selectedRowKeys });
   }
 
-  getData = (page = 1) => {
+  fetchData = (page = 1) => {
     $.ajax({
       url: '/admin/products',
       type: 'GET',
@@ -70,9 +80,36 @@ class Products extends React.Component {
     });
   }
 
-  delete = () => {
+  deleteOne(id) {
+    console.log(id);
+  }
+
+  edit(id) {
+    $.ajax({
+      url: `/admin/products/${id}`,
+      type: 'GET',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
+      success: (product) => {
+        this.setState({
+          product,
+          isOpenModal: true
+        });
+      },
+      error: (res) => {
+        Modal.error({
+          title: '错误',
+          content: res.responseText
+        });
+      }
+    });
+  }
+
+  deleteSelect = () => {
     this.setState({ loading: true });
-    console.log(this.state.selectedRowKeys)
+
     // ajax request after empty completing
     setTimeout(() => {
       this.setState({
@@ -84,7 +121,8 @@ class Products extends React.Component {
 
   create = () => {
     this.setState({
-      isOpenModal: true
+      isOpenModal: true,
+      product: {}
     });
   }
 
@@ -95,7 +133,7 @@ class Products extends React.Component {
   }
 
   render() {
-    const { loading, selectedRowKeys, data, total, isOpenModal } = this.state;
+    const { loading, selectedRowKeys, data, total, isOpenModal, product } = this.state;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -106,7 +144,7 @@ class Products extends React.Component {
         <div style={{ marginBottom: 16 }}>
           <Button
             type="danger"
-            onClick={this.delete}
+            onClick={this.deleteSelect}
             disabled={selectedRowKeys.length <= 0}
             loading={loading}
           >
@@ -119,9 +157,9 @@ class Products extends React.Component {
             添加商品
           </Button>
         </div>
-        <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ total, onChange: (page) => { this.getData(page); } }} rowKey={'id'} />
+        <Table rowSelection={rowSelection} columns={this.columns} dataSource={data} pagination={{ total, onChange: (page) => { this.fetchData(page); } }} rowKey={'id'} />
 
-        <ProductForm isVisible={isOpenModal} closeModal={this.closeModal} />
+        <ProductForm isVisible={isOpenModal} closeModal={this.closeModal} product={product} fetchData={this.fetchData} />
       </div>
     );
   }

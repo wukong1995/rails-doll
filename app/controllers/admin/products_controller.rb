@@ -1,4 +1,6 @@
 class Admin::ProductsController < Admin::BaseController
+  before_action :load_product, only: %i[show update destroy]
+
   def index
     @products = Product.page(params[:page]).per(10)
   end
@@ -10,9 +12,20 @@ class Admin::ProductsController < Admin::BaseController
     @product.save!
   end
 
+  def show
+  end
+
+  def update
+    @product.update!(product_params)
+  end
+
   private
 
+  def load_product
+    @product = Product.find(params[:id])
+  end
+
   def product_params
-    params.require(:product).permit(:name, :description, :price, :discount)
+    params.require(:product).permit(:name, :description, :price, :discount, :is_add)
   end
 end

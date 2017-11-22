@@ -6,27 +6,54 @@ import $ from 'jquery';
 const FormItem = Form.Item;
 const { TextArea } = Input;
 
+const formItemLayout = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 6 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 14 },
+  },
+};
+const tailFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 14,
+      offset: 6,
+    },
+  },
+};
+
 class ProductForm extends React.Component {
   state = {
     confirmLoading: false,
-    confirmDirty: false
+    confirmDirty: false,
   };
 
   handleSubmit = () => {
     this.props.form.validateFieldsAndScroll((err, product) => {
       if (!err) {
+        const isNew = this.props.product.id === undefined;
         $.ajax({
-          url: '/admin/products',
-          type: 'POST',
+          url: isNew ? '/admin/products' : `/admin/products/${this.props.product.id}`,
+          type: isNew ? 'POST' : 'PATCH',
           dataType: 'json',
           headers: {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
           },
           data: {
-            product
+            product,
           },
           success: (res) => {
-            console.log(res);
+            if (res === undefined) {
+              this.props.closeModal();
+              this.props.fetchData();
+            }
           },
           error: (res) => {
             Modal.error({
@@ -55,32 +82,9 @@ class ProductForm extends React.Component {
 
 
   render() {
-    const formItemLayout = {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 6 },
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 14 },
-      },
-    };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 14,
-          offset: 6,
-        },
-      },
-    };
-
     const { getFieldDecorator } = this.props.form;
-    const { closeModal, isVisible } = this.props;
-
+    const { closeModal, isVisible, product } = this.props;
+    const { name, description, price, discount, is_add } = product;
     return (
       <Modal
         title="添加商品"
@@ -93,7 +97,6 @@ class ProductForm extends React.Component {
       >
         <Form onSubmit={this.handleSubmit}>
           <input name="utf8" type="hidden" value="✓" />
-          <input name="products[id]" ref={(id) => { this.id = id; }} type="hidden" value="" />
           <FormItem
             {...formItemLayout}
             label="商品名称"
@@ -103,6 +106,7 @@ class ProductForm extends React.Component {
               rules: [{
                 required: true, message: '请输入商品名称',
               }],
+              initialValue: name
             })(
               <Input />
               )}
@@ -112,7 +116,9 @@ class ProductForm extends React.Component {
             label="商品描述"
             hasFeedback
           >
-            {getFieldDecorator('description', {})(
+            {getFieldDecorator('description', {
+              initialValue: description
+            })(
               <TextArea rows={4} />
               )}
           </FormItem>
@@ -127,6 +133,7 @@ class ProductForm extends React.Component {
               }, {
                 required: true, message: '请输入商品价格',
               }],
+              initialValue: price
             })(
               <InputNumber min={1} step={1.0} />
               )}
@@ -140,6 +147,7 @@ class ProductForm extends React.Component {
               rules: [{
                 type: 'number', message: '折扣在0-1之间',
               }],
+              initialValue: discount
             })(
               <InputNumber min={0.1} max={1} step={0.1} />
               )}
@@ -147,6 +155,7 @@ class ProductForm extends React.Component {
           <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
             {getFieldDecorator('is_add', {
               valuePropName: 'checked',
+              initialValue: is_add
             })(
               <Checkbox>是否上架</Checkbox>
               )}
@@ -160,12 +169,16 @@ class ProductForm extends React.Component {
 ProductForm.propTypes = {
   form: PropTypes.object.isRequired,
   closeModal: PropTypes.func,
-  isVisible: PropTypes.bool
+  fetchData: PropTypes.func,
+  isVisible: PropTypes.bool,
+  product: PropTypes.object
 };
 
 ProductForm.defaultProps = {
-  closeModal: () => {},
-  isVisible: false
+  closeModal: () => { },
+  fetchData: () => { },
+  isVisible: false,
+  product: {}
 };
 
 export default Form.create()(ProductForm);
