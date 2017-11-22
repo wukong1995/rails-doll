@@ -47,7 +47,7 @@ class ProductForm extends React.Component {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
           },
           data: {
-            product,
+            product
           },
           success: (res) => {
             if (res === undefined) {
