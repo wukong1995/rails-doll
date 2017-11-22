@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     root to: 'statistics#index'
     get '*path', to: 'statistics#index', constraints: ->(r) { r.format.html? }
     resources :members, only: %i[index]
-    resources :products, only: %i[create edit update destroy index]
+    resources :products, only: %i[create update destroy index show]
   end
 
   get '*url', to: 'errors#render_404'
