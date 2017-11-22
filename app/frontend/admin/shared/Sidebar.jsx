@@ -28,7 +28,7 @@ const Sidebar = () => {
         </SubMenu>
         <Menu.Item key="4">
           <Icon type="appstore-o" />
-          <span>商品</span>
+          <Link to="/products">商品</Link>
         </Menu.Item>
         <SubMenu key="sub5" title={<span><Icon type="environment-o" /><span>门店</span></span>}>
           <Menu.Item key="5"><Link to="/shop">门店信息</Link></Menu.Item>

@@ -89,7 +89,7 @@ class Members extends React.Component {
             禁用账户
           </Button>
         </div>
-        <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ total, onChange: (page, pageSize) => { this.getData(page); } }} rowKey={'id'} />
+        <Table rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ total, onChange: (page) => { this.getData(page); } }} rowKey={'id'} />
       </div>
     );
   }

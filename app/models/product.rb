@@ -14,7 +14,7 @@ end
 #  description :text
 #  price       :float            not null
 #  discount    :float            default(1.0)
-#  isAdd       :boolean          default(FALSE)
+#  is_add      :boolean          default(FALSE)
 #  user_id     :uuid
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
