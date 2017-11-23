@@ -36,10 +36,21 @@ export const getAction = (url) => {
 
 export const fetchAction = (url, page) => {
   return $.ajax({
-    url: '/admin/products',
+    url,
     type: 'GET',
     data: {
       page
+    }
+  });
+};
+
+export const postAction = (url) => {
+  return $.ajax({
+    url,
+    type: 'POST',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     }
   });
 };

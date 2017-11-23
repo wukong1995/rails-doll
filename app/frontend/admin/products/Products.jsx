@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, Button, Switch, Modal } from 'antd';
-import { deleteAction, getAction, fetchAction, deleteMultipleAction } from 'utils/ajax_action';
+import { deleteAction, getAction, fetchAction, deleteMultipleAction, postAction } from 'utils/ajax_action';
 import ProductForm from './ProductForm';
 
 class Products extends React.Component {
@@ -22,8 +22,8 @@ class Products extends React.Component {
       title: '是否上架',
       key: 'is_add',
       dataIndex: 'is_add',
-      render: (is_add) => (
-        <Switch checkedChildren="上架" unCheckedChildren="下架" defaultChecked={is_add} />
+      render: (is_add, record) => (
+        <Switch checkedChildren="上架" unCheckedChildren="下架" defaultChecked={is_add} onChange={() => { this.changeAdd(record.id); }} />
       )
     }, {
       title: '创建时间',
@@ -108,6 +108,19 @@ class Products extends React.Component {
           title: '错误',
           content: res.responseText
         });
+      });
+  }
+
+  changeAdd = (id) => {
+    postAction(`/admin/products/${id}/change`)
+      .done((res) => {
+        if (!res.success) {
+          alert('请刷新页面重试');
+        }
+      })
+      .fail((err) => {
+        alert('请刷新重试');
+        console.log(err);
       });
   }
 

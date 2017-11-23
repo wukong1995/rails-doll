@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get '*path', to: 'statistics#index', constraints: ->(r) { r.format.html? }
     resources :members, only: %i[index]
     resources :products, only: %i[create update destroy index show]
+    post 'products/:id/change', to: 'products#change_add'
     delete 'delete/multiple', to: 'products#destroy_multiple'
   end
 
