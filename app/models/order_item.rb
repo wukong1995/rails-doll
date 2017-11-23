@@ -21,10 +21,12 @@ end
 #  order_id     :uuid
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  deleted_at   :datetime
 #
 # Indexes
 #
-#  index_order_items_on_order_id  (order_id)
+#  index_order_items_on_deleted_at  (deleted_at)
+#  index_order_items_on_order_id    (order_id)
 #
 # Foreign Keys
 #

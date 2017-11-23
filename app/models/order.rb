@@ -18,10 +18,12 @@ end
 #  user_id      :uuid
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  deleted_at   :datetime
 #
 # Indexes
 #
-#  index_orders_on_user_id  (user_id)
+#  index_orders_on_deleted_at  (deleted_at)
+#  index_orders_on_user_id     (user_id)
 #
 # Foreign Keys
 #

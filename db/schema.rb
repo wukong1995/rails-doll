@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122040215) do
+ActiveRecord::Schema.define(version: 20171122084006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,9 @@ ActiveRecord::Schema.define(version: 20171122040215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "author_id"
+    t.datetime "deleted_at"
     t.index ["author_id"], name: "index_articles_on_author_id"
+    t.index ["deleted_at"], name: "index_articles_on_deleted_at"
   end
 
   create_table "comments", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
@@ -31,7 +33,9 @@ ActiveRecord::Schema.define(version: 20171122040215) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "user_id"
+    t.datetime "deleted_at"
     t.index ["article_id"], name: "index_comments_on_article_id"
+    t.index ["deleted_at"], name: "index_comments_on_deleted_at"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -44,6 +48,8 @@ ActiveRecord::Schema.define(version: 20171122040215) do
     t.uuid "order_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_order_items_on_deleted_at"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
@@ -53,6 +59,8 @@ ActiveRecord::Schema.define(version: 20171122040215) do
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_orders_on_deleted_at"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -65,6 +73,8 @@ ActiveRecord::Schema.define(version: 20171122040215) do
     t.uuid "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
