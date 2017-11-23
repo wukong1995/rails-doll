@@ -8,8 +8,6 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :password, presence: true
   validates :name, presence: true, length: { minimum: 4, maxnum: 20 }
-
-  acts_as_paranoid
 end
 
 # == Schema Information
