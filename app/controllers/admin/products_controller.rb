@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::BaseController
-  before_action :load_product, only: %i[show update destroy]
+  before_action :load_product, only: %i[show update destroy change_add]
 
   def index
     @products = Product.page(params[:page]).per(10)
@@ -23,6 +23,12 @@ class Admin::ProductsController < Admin::BaseController
     @product.destroy!
   end
 
+  def change_add
+    current_add = @product.is_add
+    @product.is_add = !current_add
+    @product.save!
+    render json: { success: true }
+  end
 
   def destroy_multiple
     params[:ids].each do |id|
