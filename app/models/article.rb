@@ -19,10 +19,12 @@ end
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  author_id  :uuid
+#  deleted_at :datetime
 #
 # Indexes
 #
-#  index_articles_on_author_id  (author_id)
+#  index_articles_on_author_id   (author_id)
+#  index_articles_on_deleted_at  (deleted_at)
 #
 # Foreign Keys
 #
