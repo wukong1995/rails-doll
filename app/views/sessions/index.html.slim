@@ -1,17 +1,18 @@
 .session.signin
-  canvas#particles-js
+  a.session__go-root href="/" Hello Rails
   .session-form
-    .session__header Sign In
+    .session__header 登录
     - if flash[:error]
       .session__error #{flash[:error]}
     form method="POST" action="/signin"
       input name="utf8" type="hidden" value="✓" /
       = hidden_field_tag :authenticity_token, form_authenticity_token
       .session-item
-        label email
+        label 邮箱
         input type="text" name="user[email]" /
       .session-item
-        label password
+        label 密码
         input type="password" name="user[password]" /
       .session-item
-        button.btn.btn-primary type="submit" id="btn-submmit" Signin
+        button.btn.btn-primary type="submit" id="btn-submmit" 登录
+    a.session__go-switch href="/signup" 立即注册 →

@@ -13,11 +13,13 @@ class UsersController < ApplicationController
 
     @user = User.new(user_params)
 
-    if !@user.save
-      redirect_to signup_path, :alert => @user.errors
-    end
+    @user.save!
   end
 
   def index
+  end
+
+   def user_params
+    params.require(:user).permit(:email, :name, :password)
   end
 end
