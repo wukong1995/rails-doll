@@ -6,4 +6,6 @@ class ArticlePolicy < ApplicationPolicy
   alias create? index?
   alias update? index?
   alias destroy? index?
+  alias change_add? index?
+  alias destroy_multiple? index?
 end

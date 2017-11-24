@@ -4,10 +4,6 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
-  resources :articles, only: %i[index show] do
-    resources :comments
-  end
-
   get 'signin', to: 'sessions#index'
   post 'signin', to: 'sessions#create'
   get 'logout', to: 'sessions#logout'
@@ -18,7 +14,7 @@ Rails.application.routes.draw do
     root to: 'statistics#index'
     get '*path', to: 'statistics#index', constraints: ->(r) { r.format.html? }
     resources :members, only: %i[index]
-    resources :products, only: %i[create update destroy index show]
+    resources :products, only: %i[create update destroy index]
     post 'products/:id/change', to: 'products#change_add'
     delete 'delete/multiple', to: 'products#destroy_multiple'
   end
