@@ -19,6 +19,13 @@ $header-height: 60px;
   padding: 0 30px;
   line-height: $header-height;
   font-size: 2rem;
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  a, a:hover {
+    color: #fff;
+  }
 }
 
 #sidebar {
@@ -31,7 +38,7 @@ $header-height: 60px;
 }
 
 #main-container {
-  padding: 20px 20px 20px 260px;
+  padding: ($header-height + 20px) 20px 20px 260px;
 
 }
 

@@ -1,4 +1,4 @@
-class ArticlePolicy < ApplicationPolicy
+class ProductPolicy < ApplicationPolicy
   def index?
     admin?
   end
