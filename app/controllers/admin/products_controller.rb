@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::BaseController
-  before_action :load_product, only: %i[show update destroy change_add]
+  before_action :load_product, only: %i[update destroy change_add]
 
   def index
     @products = Product.page(params[:page]).per(10)
@@ -8,11 +8,8 @@ class Admin::ProductsController < Admin::BaseController
   def create
     @product = Product.new(product_params)
     @product.user_id = current_user.id
-    # authorize @product
+    authorize @product
     @product.save!
-  end
-
-  def show
   end
 
   def update
@@ -41,6 +38,7 @@ class Admin::ProductsController < Admin::BaseController
 
   def load_product
     @product = Product.find(params[:id])
+    authorize @product
   end
 
   def product_params
