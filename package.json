@@ -8,19 +8,22 @@
   },
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
+    "antd": "^2.13.10",
+    "babel-plugin-import": "^1.6.2",
     "babel-preset-react": "^6.24.1",
     "bootstrap": "3",
     "expose-loader": "^0.7.3",
     "jquery": "^3.2.1",
-    "particlesjs": "^2.0.2",
     "prop-types": "^15.6.0",
     "rails-ujs": "^5.1.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-router-dom": "^4.2.2",
     "react_ujs": "^2.4.0"
   },
   "devDependencies": {
     "eslint": "^3.16.1",
+    "babel-eslint": "^8.0.2",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",

@@ -2,6 +2,9 @@ class User < ApplicationRecord
   has_secure_password
   has_many :articles
   has_many :comments
+  has_many :products
+  has_many :orders
+  has_many :cart_items
 
   validates :email, presence: true
   validates :password, presence: true
@@ -17,8 +20,6 @@ end
 #  name            :string           not null
 #  verify_code     :integer
 #  introduction    :string
-#  create_at       :datetime         default(Wed, 20 Sep 2017 05:37:16 UTC +00:00), not null
-#  update_at       :datetime         default(Wed, 20 Sep 2017 05:37:16 UTC +00:00), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  password_digest :string           default(""), not null

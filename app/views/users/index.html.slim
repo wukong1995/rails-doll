@@ -1,5 +1,5 @@
 .session.signup
-  canvas#particles-js
+  a.session__go-root href="/" Hello Rails
   .session-form
     .session__header Sign Up
     = display_notice_and_alert
@@ -7,20 +7,18 @@
       input name="utf8" type="hidden" value="✓" /
       = hidden_field_tag :authenticity_token, form_authenticity_token
       .session-item
-        label email
-        input type="text" name="user[email]" placeholder="email" /
+        label 邮箱
+        input type="text" name="user[email]" /
       .session-item
-        label username
-        input type="text" name="user[name]" placeholder="name" /
+        label 昵称
+        input type="text" name="user[name]" /
       .session-item
-        label captcha
-        = rucaptcha_input_tag(placeholder: 'captcha')
+        label 密码
+        input type="password" name="user[password]" /
+      .session-item
+        label 验证码
+        = rucaptcha_input_tag()
         img.js-rucaptcha-image ref="rucaptcha" src="/rucaptcha/" alt="图形验证码"
       .session-item
-        label password
-        input type="password" name="user[password]" placeholder="password" /
-      .session-item
-        label pwconfirm
-        input type="password" name="pwconfirm" placeholder="password confirm" /
-      .session-item
-        button.btn.btn-primary type="submit" id="btn-submmit" Signup
+        button.btn.btn-primary type="submit" id="btn-submmit" 注册
+    a.session__go-switch href="/signin" 立即登录 →

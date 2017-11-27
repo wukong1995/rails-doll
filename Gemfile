@@ -54,8 +54,10 @@ gem 'rucaptcha'
 # paginator
 gem 'kaminari'
 
-#
 gem "react-rails"
+
+# software delete
+gem "paranoia", "~> 2.2"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

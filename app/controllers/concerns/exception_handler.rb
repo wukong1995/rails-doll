@@ -31,8 +31,13 @@ module ExceptionHandler
   end
 
   def record_error_message(e)
-    flash[:alert] = e.message
-    redirect_to action: 'index'
+    respond_to do |format|
+      format.html do
+        flash[:alert] = e.message
+        redirect_to action: 'index'
+      end
+      format.json { render json: { errors: [e.message] }, status: 422 }
+    end
   end
 
   def error_occurred(exception)

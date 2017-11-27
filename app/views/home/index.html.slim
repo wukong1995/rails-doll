@@ -1,0 +1,19 @@
+.welcome.container
+  .jumbotron
+    h1 Hello Rails
+    p This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
+    p
+      a.btn.btn-primary.btn-lg Learn more
+  .row
+    - @products.each do |product|
+      .col-sm-6.col-md-4
+        .thumbnail
+          img src=image_path('no-picture.jpg') alt="暂无图片"
+          .caption
+            h3 #{product.name}
+            p #{product.description || '该商品没有描述～'}
+            p
+              a.btn.btn-primary href=product_path(product) role="button" 查看
+              span &nbsp;&nbsp;
+              a.btn.btn-success.js-add-cart data-id=product.id href="javascript:;" role="button" 加入购物车
+  = paginate @products

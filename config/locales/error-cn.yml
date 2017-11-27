@@ -1,0 +1,20 @@
+zh-CN:
+  pundit:
+    default: '你没有权限执行这个操作.'
+    product_policy:
+      update?: '你不能进行编辑'
+      create?: '你不能进行新增'
+      no_authorized: '你没权限进入'
+  activerecord:
+    errors:
+      messages:
+        record_invalid: "验证失败: %{errors}"
+  errors:
+    format: "%{attribute} %{message}"
+    messages:
+      accepted: 必须是可被接受的
+      blank: 不能为空
+      too_short:
+        one: 过短(至少一个字符)
+        other: 过短(至少%{count}个字符)
+      model_invalid: "验证失败: %{errors}"

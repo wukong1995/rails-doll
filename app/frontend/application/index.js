@@ -1,12 +1,11 @@
-
 import './style/app.scss';
-import particles from './page/session';
 
 import { runPage, updateRucaptcha } from 'utils/tool';
+import home from './page/home';
 
 const application = () => {
-  runPage(['sessions-index','sessions-new'], particles);
-  runPage('sessions-new', updateRucaptcha);
+  runPage('home-index', home);
+  runPage('users-index', updateRucaptcha);
 };
 
 export default application;

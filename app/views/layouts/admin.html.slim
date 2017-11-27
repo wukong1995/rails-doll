@@ -10,12 +10,9 @@ html
     = stylesheet_pack_tag 'admin'
   head
 
-  body id=page_id
-    = render 'shared/header', admin: true
-    .main-container
-      = render 'admin/shared/sidebar'
-      .page-container
-        = yield
+  body
+    = render 'admin/shared/header'
+    #admin-app
 
     = javascript_pack_tag 'admin'
   body

@@ -1,13 +1,13 @@
 import './app.scss';
-
-import $ from 'jquery';
-import 'bootstrap/dist/js/bootstrap.min.js';
-
-import article from './page/article';
-import { runPage } from 'utils/tool';
+import React from 'react';
+import ReactDom from 'react-dom';
+import App from './App';
 
 const admin = () => {
-  runPage('articles-index', article);
+  ReactDom.render(
+    <App />,
+    document.getElementById('admin-app')
+  );
 };
 
 export default admin;
