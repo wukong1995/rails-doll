@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'welcome#index'
-  get 'welcome/index'
+  root 'home#index'
+  get 'home/index'
 
   resources :products, only: %i[show]
+  get 'cart', to: 'carts#show'
+  post 'cart/add/:product_id', to: 'carts#add'
+  post 'cart/delete/:card_item_id', to: 'carts#delete'
+  post 'cart/drop', to: 'carts#drop'
 
   # user
   get 'signin', to: 'sessions#index'

@@ -77,6 +77,7 @@ class Products extends React.Component {
     Modal.confirm({
       title: 'Confirm',
       content: '确认删除',
+      okType: 'danger',
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
@@ -129,6 +130,7 @@ class Products extends React.Component {
     Modal.confirm({
       title: 'Confirm',
       content: '确认删除',
+      okType: 'danger',
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
