@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124060827) do
+ActiveRecord::Schema.define(version: 20171127025148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "carts", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
+  end
 
   create_table "order_items", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +74,7 @@ ActiveRecord::Schema.define(version: 20171124060827) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "carts", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "users"
