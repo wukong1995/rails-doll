@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :products
   has_many :orders
-  has_one :cart
+  has_many :cart_items
 
   validates :email, presence: true
   validates :password, presence: true
