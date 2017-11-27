@@ -6,8 +6,7 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def create
-    @product = Product.new(product_params)
-    @product.user_id = current_user.id
+    @product = current_user.products.new(product_params)
     authorize @product
     @product.save!
   end

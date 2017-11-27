@@ -1,26 +1,27 @@
 class CartsController < ApplicationController
-  before_action :load_product, only: %i[add delete drop]
+  before_action :load_cart, only: %i[add delete drop]
+
+  def show
+  end
 
   def add
-    @cart = current_user.cart
-
+    @cart_item = @carts.new(product_id: params[:product_id])
+    @cart_item.save!
   end
 
   def delete
-
+    @cart_item = @carts.find(params[:card_item_id])
+    @cart_item.destroy!
   end
 
   def drop
-    @cart = nil
-    @cart.save!
+    @carts = []
   end
 
   private
 
   def load_cart
-    unless current_user.cart = nil
-      current_user.create_cart
-    @cart = current_user.cart
+    @carts = current_user.cart_items
   end
 
 end
