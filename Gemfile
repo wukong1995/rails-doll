@@ -59,20 +59,30 @@ gem "react-rails"
 # software delete
 gem "paranoia", "~> 2.2"
 
+# what??
+gem 'whenever', require: false
+# Use dotenv for envs
+gem 'dotenv-rails', require: 'dotenv/rails-now'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem "capistrano", "~> 3.9"
+  gem 'capistrano', '3.8.1', require: false
+  gem 'capistrano-bundler',  require: false
+  gem 'capistrano-db-tasks', require: false
+  gem 'capistrano-rails',    require: false
+  gem 'capistrano-rbenv',    require: false
+  gem 'capistrano-sidekiq',  require: false
+  gem 'capistrano3-puma',    require: false
   gem 'selenium-webdriver'
   gem 'rspec-rails'
 
   # Annotations
   gem 'annotate'
 end
-
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
@@ -99,4 +109,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
 #   gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'master'
 # end
+
+group :production do
+  gem 'rack-utf8_sanitizer'
+  gem 'sitemap_generator'
+end
 

@@ -1,0 +1,77 @@
+# inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - !ruby/regexp /(vendor|bundle|bin|db)\/.*/
+    - node_modules/**/*
+    - Guardfile
+    - spec/support/warden.rb
+    - spec/spec_helper.rb
+    - config/environments/production.rb
+    - config/deploy.rb
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  TargetRubyVersion: 2.4
+
+Rails:
+  Enabled: true
+Rails/HasAndBelongsToMany:
+  Enabled: false
+Rails/SkipsModelValidations:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 100
+  Exclude:
+    - spec/**/*.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+    - config/routes.rb
+    - config/routes/admin.rb
+    - config/routes/user.rb
+    - app/graphql/types/query_type.rb
+
+Metrics/ModuleLength:
+  Exclude:
+    - config/routes.rb
+    - config/routes/admin.rb
+    - config/routes/user.rb
+
+Metrics/CyclomaticComplexity:
+  Max: 8
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - app/graphql/association_loader.rb
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/ClassLength:
+  Max: 160
+
+Layout/AlignHash:
+  Enabled: false
+
+Layout/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Style/Lambda:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
