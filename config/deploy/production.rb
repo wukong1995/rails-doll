@@ -5,6 +5,7 @@ end
 
 server 'wukong.dival.cn', user: 'wong', roles: %w[app db web], primary: true, port: 3000
 set :server_name, 'wukong.dival.cn'
+set :rbenv_path, '/home/wong/.rbenv'
 set :rbenv_ruby, '2.5.1'
 set :rails_env, 'production'
 set :branch, 'master'

@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock "3.9.1"
+lock '3.8.1'
 
 set :application, "rail_doll"
 set :repo_url, "git@github.com:wukong1995/rails-doll.git"
@@ -53,7 +53,6 @@ namespace :deploy do
       unless `git rev-parse HEAD` == `git rev-parse origin/#{fetch(:branch)}`
         warn "WARNING: HEAD is not the same as origin/#{fetch(:branch)}"
         warn 'Sync changes before deploy.'
-        exit
       end
     end
   end
