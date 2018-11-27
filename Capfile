@@ -36,7 +36,6 @@ install_plugin Capistrano::Puma::Workers
 require 'capistrano-db-tasks'
 require 'capistrano/sidekiq'
 require 'capistrano/sitemap_generator'
-require 'whenever/capistrano'
 require 'dotenv'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

@@ -60,7 +60,6 @@ gem "react-rails"
 gem "paranoia", "~> 2.2"
 
 # what??
-gem 'whenever', require: false
 # Use dotenv for envs
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 
@@ -114,4 +113,3 @@ group :production do
   gem 'rack-utf8_sanitizer'
   gem 'sitemap_generator'
 end
-
