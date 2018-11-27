@@ -74,7 +74,6 @@ group :development, :test do
   gem 'capistrano-db-tasks', require: false
   gem 'capistrano-rails',    require: false
   gem 'capistrano-rbenv',    require: false
-  gem 'capistrano-sidekiq',  require: false
   gem 'capistrano3-puma',    require: false
   gem 'selenium-webdriver'
   gem 'rspec-rails'

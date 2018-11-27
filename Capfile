@@ -34,7 +34,6 @@ require 'capistrano/puma'
 install_plugin Capistrano::Puma  # Default puma tasks
 install_plugin Capistrano::Puma::Workers
 require 'capistrano-db-tasks'
-require 'capistrano/sidekiq'
 require 'capistrano/sitemap_generator'
 require 'dotenv'
 
