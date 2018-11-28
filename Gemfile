@@ -36,7 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "slim"
 gem "slim-rails"
 
-gem 'webpacker'
+gem 'webpacker', '>= 4.0.x'
 
 # highlight
 # gem 'wirble'
