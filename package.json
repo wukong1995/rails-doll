@@ -12,7 +12,7 @@
     "antd": "^2.13.10",
     "babel-plugin-import": "^1.6.2",
     "babel-preset-react": "^6.24.1",
-    "bootstrap": "3",
+    "bootstrap-sass": "3",
     "expose-loader": "^0.7.3",
     "jquery": "^3.2.1",
     "prop-types": "^15.6.2",
