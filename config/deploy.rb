@@ -42,7 +42,7 @@ set :linked_files, %w(.env)
 set :linked_dirs,  %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/shared public/system public/uploads public/data public/wp-content public/.well-known)
 
 set :assets_dir,       'public/assets'
-set :origin_assets, %w(frontend/ app/assets/ yarn.lock)
+set :origin_assets, %w(app/frontend/ app/assets/ yarn.lock)
 
 # Precompile files locally for _much_ faster deployment.
 Rake::Task["deploy:compile_assets"].clear
