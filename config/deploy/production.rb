@@ -3,7 +3,7 @@ if File.exist?('config/deploy_rsa')
   set :identity_cmd, ' -i config/deploy_rsa'
 end
 
-server 'wukong.dival.cn', user: 'wong', roles: %w[app db web], primary: true, port: 3000
+server 'wukong.dival.cn', user: 'wong', roles: %w[app db web], primary: true, port: 18622
 set :server_name, 'wukong.dival.cn'
 set :rbenv_path, '/home/wong/.rbenv'
 set :rbenv_ruby, '2.5.1'
@@ -12,7 +12,7 @@ set :branch, 'master'
 
 set :disallow_pushing, true
 
-set :rsync_cmd,        "rsync -av --delete -e 'ssh -p 3000#{fetch(:identity_cmd)}'"
+set :rsync_cmd,        "rsync -av -p --delete -e 'ssh -p 18622#{fetch(:identity_cmd)}'"
 
 
 # Global options

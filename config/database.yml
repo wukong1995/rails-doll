@@ -78,3 +78,8 @@ test:
 production:
   <<: *default
   database: rails_app_production
+  encoding: utf8
+  pool: 20
+  database_host: '127.0.0.1'
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>

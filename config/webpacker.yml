@@ -3,7 +3,7 @@
 default: &default
   source_path: app/frontend
   source_entry_path: packs
-  public_output_path: packs
+  public_output_path: assets/packs
   cache_path: tmp/cache/webpacker
 
   # Additional paths webpack should lookup modules
@@ -37,7 +37,7 @@ development:
 
   dev_server:
     host: localhost
-    port: 3035
+    port: 3036
     hmr: false
     https: false
 

@@ -8,6 +8,9 @@ set :repo_url, "git@github.com:wukong1995/rails-doll.git"
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
+set :user, 'wong'
+set :puma_threads, [4, 16]
+set :puma_workers, 2
 set :deploy_to, "/home/wong/rail_doll"
 
 # Default value for :format is :airbrussh.
