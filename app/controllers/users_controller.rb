@@ -12,14 +12,14 @@ class UsersController < ApplicationController
     end
 
     @user = User.new(user_params)
-
     @user.save!
+    redirect_to root_path
   end
 
   def index
   end
 
-   def user_params
+  def user_params
     params.require(:user).permit(:email, :name, :password)
   end
 end
