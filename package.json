@@ -7,7 +7,6 @@
     "clean": "rm -f public/packs/*"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.0.0",
     "@rails/webpacker": "https://github.com/rails/webpacker",
     "antd": "^2.13.10",
     "babel-plugin-import": "^1.6.2",
