@@ -1,3 +1,5 @@
-const { environment } = require('@rails/webpacker')
+const { environment } = require('@rails/webpacker');
+const expose = require('./loaders/expose');
 
-module.exports = environment
+environment.loaders.insert('expose', expose);
+module.exports = environment;
