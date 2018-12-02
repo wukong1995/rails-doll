@@ -9,17 +9,13 @@
   "dependencies": {
     "@rails/webpacker": "https://github.com/rails/webpacker",
     "antd": "^2.13.10",
-    "babel-plugin-import": "^1.6.2",
-    "babel-preset-react": "^6.24.1",
     "bootstrap-sass": "3",
     "expose-loader": "^0.7.3",
     "jquery": "^3.2.1",
     "prop-types": "^15.6.2",
-    "rails-ujs": "^5.1.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-router-dom": "^4.2.2",
-    "react_ujs": "^2.4.0"
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
