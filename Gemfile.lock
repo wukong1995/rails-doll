@@ -195,6 +195,7 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
+    redis (3.3.5)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -316,6 +317,7 @@ DEPENDENCIES
   rack-utf8_sanitizer
   rails (~> 5.2.0)
   react-rails
+  redis (~> 3.0)
   rspec
   rspec-rails
   rubocop
