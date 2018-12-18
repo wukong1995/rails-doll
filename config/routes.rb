@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'statistics#index'
     get '*path', to: 'statistics#index', constraints: ->(r) { r.format.html? }
-    resources :members, only: %i[index]
-    resources :products, only: %i[create update destroy index]
+    resources :users, only: %i[index]
+    resources :products, only: %i[create show update destroy index]
     post 'products/:id/change', to: 'products#change_add'
     delete 'delete/multiple', to: 'products#destroy_multiple'
   end

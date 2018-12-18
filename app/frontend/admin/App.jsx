@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Sidebar from './shared/Sidebar';
 import Home from './Home';
-import Members from './members/Members';
+import Users from './users/Users';
 import Products from './products/Products';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/index" />} />
             <Route path="/index" component={Home} />
-            <Route path="/members" component={Members} />
+            <Route path="/users" component={Users} />
             <Route path="/products" component={Products} />
             <Route path="/*" render={() => <Redirect to="/index" />} />
           </Switch>

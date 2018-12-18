@@ -52,15 +52,16 @@ class Members extends React.Component {
 
   getData = (page = 1) => {
     $.ajax({
-      url: '/admin/members',
+      url: '/admin/users',
       type: 'GET',
       data: {
         page
       },
       success: (res) => {
+        const { users, total } = res;
         this.setState({
-          data: res.members,
-          total: res.total
+          data: users,
+          total
         });
       },
       error: (err) => {
