@@ -3,12 +3,6 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
 
-  resources :products, only: %i[show]
-  get 'cart', to: 'carts#show'
-  post 'cart/add/:product_id', to: 'carts#add'
-  post 'cart/delete/:card_item_id', to: 'carts#delete'
-  post 'cart/drop', to: 'carts#drop'
-
   # user
   get 'signin', to: 'sessions#index'
   post 'signin', to: 'sessions#create'
@@ -20,9 +14,7 @@ Rails.application.routes.draw do
     root to: 'statistics#index'
     get '*path', to: 'statistics#index', constraints: ->(r) { r.format.html? }
     resources :users, only: %i[index]
-    resources :products, only: %i[create show update destroy index]
-    post 'products/:id/change', to: 'products#change_add'
-    delete 'delete/multiple', to: 'products#destroy_multiple'
+    resources :recommends, only: %i[create show update destroy index]
   end
 
   get '*url', to: 'errors#render_404'

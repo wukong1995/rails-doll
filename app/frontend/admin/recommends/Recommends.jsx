@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Button, Switch, Modal } from 'antd';
 import { deleteAction, getAction, fetchAction, deleteMultipleAction, postAction } from 'utils/ajax_action';
-import ProductForm from './ProductForm';
+import RecommendForm from './RecommendForm';
 
 class Products extends React.Component {
   constructor(props) {
@@ -195,7 +195,7 @@ class Products extends React.Component {
         </div>
         <Table rowSelection={rowSelection} columns={this.columns} dataSource={data} pagination={{ total, onChange: (page) => { this.fetchData(page); } }} rowKey={'id'} />
 
-        <ProductForm isVisible={isOpenModal} closeModal={this.closeModal} product={product} fetchData={this.fetchData} />
+        <RecommendForm isVisible={isOpenModal} closeModal={this.closeModal} product={product} fetchData={this.fetchData} />
       </div>
     );
   }

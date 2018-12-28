@@ -1,11 +1,5 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :articles
-  has_many :comments
-  has_many :products
-  has_many :orders
-  has_many :cart_items
-
   validates :email, presence: true
   validates :password, presence: true
   validates :name, presence: true, length: { minimum: 4, maxnum: 20 }

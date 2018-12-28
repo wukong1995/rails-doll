@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :product do
+  factory :recommend do
     name "test title"
     description "test text"
   end

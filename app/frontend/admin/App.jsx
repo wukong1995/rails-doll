@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Sidebar from './shared/Sidebar';
 import Home from './Home';
 import Users from './users/Users';
-import Products from './products/Products';
+import Recommends from './recommends/Recommends';
 
 const App = () => {
   return (
@@ -18,7 +18,7 @@ const App = () => {
             <Route exact path="/" render={() => <Redirect to="/index" />} />
             <Route path="/index" component={Home} />
             <Route path="/users" component={Users} />
-            <Route path="/products" component={Products} />
+            <Route path="/recommends" component={Recommends} />
             <Route path="/*" render={() => <Redirect to="/index" />} />
           </Switch>
         </div>

@@ -1,4 +1,4 @@
-class ProductPolicy < ApplicationPolicy
+class RecommendPolicy < ApplicationPolicy
   def index?
     admin?
   end

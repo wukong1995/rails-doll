@@ -20,7 +20,7 @@ const Sidebar = () => {
         </SubMenu>
         <Menu.Item key="4">
           <Icon type="appstore-o" />
-          <Link to="/products">商品</Link>
+          <Link to="/recommends">推荐</Link>
         </Menu.Item>
       </Menu>
     </div>
