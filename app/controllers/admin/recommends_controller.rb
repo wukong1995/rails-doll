@@ -6,7 +6,7 @@ class Admin::RecommendsController < Admin::BaseController
   end
 
   def create
-    @recommend = current_user.recommends.new(recommend_params)
+    @recommend = Recommend.new(recommend_params)
     authorize @recommend
     @recommend.save!
   end
@@ -30,6 +30,6 @@ class Admin::RecommendsController < Admin::BaseController
   end
 
   def recommend_params
-    params.require(:recommend).permit(:name, :description, :price, :discount, :is_add)
+    params.require(:recommend).permit(:title, :desc, :category)
   end
 end

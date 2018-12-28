@@ -1,5 +1,5 @@
 class Recommend < ApplicationRecord
-  enum category: { default: 0, published: 1, pending: 2, failed: 3 }
+  enum category: { default: 0, game: 1, book: 2, makeup: 3 }
 end
 
 # == Schema Information

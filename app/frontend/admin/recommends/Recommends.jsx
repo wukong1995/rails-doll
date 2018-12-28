@@ -1,30 +1,19 @@
 import React from 'react';
-import { Table, Button, Switch, Modal } from 'antd';
-import { deleteAction, getAction, fetchAction, deleteMultipleAction, postAction } from 'utils/ajax_action';
+import { Table, Button, Modal } from 'antd';
+import { deleteAction, getAction, fetchAction, deleteMultipleAction } from 'utils/ajax_action';
 import RecommendForm from './RecommendForm';
 
-class Products extends React.Component {
+class recommend extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [{
-      title: '商品名称',
-      key: 'name',
-      dataIndex: 'name',
+      title: '名称',
+      key: 'title',
+      dataIndex: 'title',
     }, {
-      title: '价格',
-      key: 'price',
-      dataIndex: 'price',
-    }, {
-      title: '折扣',
-      key: 'discount',
-      dataIndex: 'discount',
-    }, {
-      title: '是否上架',
-      key: 'is_add',
-      dataIndex: 'is_add',
-      render: (is_add, record) => (
-        <Switch checkedChildren="上架" unCheckedChildren="下架" defaultChecked={is_add} onChange={() => { this.changeAdd(record.id); }} />
-      )
+      title: '分类',
+      key: 'category',
+      dataIndex: 'category',
     }, {
       title: '创建时间',
       key: 'created_at',
@@ -48,7 +37,7 @@ class Products extends React.Component {
     isOpenModal: false,
     data: [],
     total: 0,
-    product: {}
+    recommend: {}
   };
 
   componentDidMount() {
@@ -60,10 +49,10 @@ class Products extends React.Component {
   }
 
   fetchData = (page = 1) => {
-    fetchAction('/admin/products', page)
+    fetchAction('/admin/recommends', page)
       .done((res) => {
         this.setState({
-          data: res.products,
+          data: res.recommends,
           total: res.total
         });
       })
@@ -81,7 +70,7 @@ class Products extends React.Component {
       okText: '确认',
       cancelText: '取消',
       onOk: () => {
-        deleteAction(`/admin/products/${id}`)
+        deleteAction(`/admin/recommends/${id}`)
           .done((res) => {
             if (res === undefined) {
               this.fetchData();
@@ -96,10 +85,10 @@ class Products extends React.Component {
   }
 
   edit(id) {
-    getAction(`/admin/products/${id}`)
-      .done((product) => {
+    getAction(`/admin/recommends/${id}`)
+      .done((recommend) => {
         this.setState({
-          product,
+          recommend,
           isOpenModal: true
         });
       })
@@ -108,19 +97,6 @@ class Products extends React.Component {
           title: '错误',
           content: res.responseText
         });
-      });
-  }
-
-  changeAdd = (id) => {
-    postAction(`/admin/products/${id}/change`)
-      .done((res) => {
-        if (!res.success) {
-          alert('请刷新页面重试');
-        }
-      })
-      .fail((err) => {
-        alert('请刷新重试');
-        console.log(err);
       });
   }
 
@@ -158,7 +134,7 @@ class Products extends React.Component {
   create = () => {
     this.setState({
       isOpenModal: true,
-      product: {}
+      recommend: {}
     });
   }
 
@@ -169,7 +145,7 @@ class Products extends React.Component {
   }
 
   render() {
-    const { loading, selectedRowKeys, data, total, isOpenModal, product } = this.state;
+    const { loading, selectedRowKeys, data, total, isOpenModal, recommend } = this.state;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -184,21 +160,21 @@ class Products extends React.Component {
             disabled={selectedRowKeys.length <= 0}
             loading={loading}
           >
-            删除商品
+            删除
           </Button>&nbsp;&nbsp;
           <Button
             type="primary"
             onClick={this.create}
           >
-            添加商品
+            添加
           </Button>
         </div>
         <Table rowSelection={rowSelection} columns={this.columns} dataSource={data} pagination={{ total, onChange: (page) => { this.fetchData(page); } }} rowKey={'id'} />
 
-        <RecommendForm isVisible={isOpenModal} closeModal={this.closeModal} product={product} fetchData={this.fetchData} />
+        <RecommendForm isVisible={isOpenModal} closeModal={this.closeModal} recommend={recommend} fetchData={this.fetchData} />
       </div>
     );
   }
 }
 
-export default Products;
+export default recommend;

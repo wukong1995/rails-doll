@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Input, Checkbox, InputNumber, Modal } from 'antd';
+import { Form, Input, Radio, Modal } from 'antd';
 import $ from 'jquery';
 
 const FormItem = Form.Item;
@@ -16,38 +16,27 @@ const formItemLayout = {
     sm: { span: 14 },
   },
 };
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 14,
-      offset: 6,
-    },
-  },
-};
 
-class ProductForm extends React.Component {
+class RecommendForm extends React.Component {
   state = {
     confirmLoading: false,
     confirmDirty: false,
   };
 
   handleSubmit = () => {
-    this.props.form.validateFieldsAndScroll((err, product) => {
+    this.props.form.validateFieldsAndScroll((err, recommend) => {
       if (!err) {
-        const isNew = this.props.product.id === undefined;
+        const { id } = this.props.recommend;
+        const isNew = id === undefined;
         $.ajax({
-          url: isNew ? '/admin/products' : `/admin/products/${this.props.product.id}`,
+          url: isNew ? '/admin/recommends' : `/admin/recommends/${id}`,
           type: isNew ? 'POST' : 'PATCH',
           dataType: 'json',
           headers: {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
           },
           data: {
-            product
+            recommend
           },
           success: (res) => {
             if (res === undefined) {
@@ -71,23 +60,13 @@ class ProductForm extends React.Component {
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   }
 
-  checkPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
-  }
-
-
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { closeModal, isVisible, product } = this.props;
-    const { name, description, price, discount, is_add } = product;
+    const { closeModal, isVisible, recommend } = this.props;
+    const { title, desc, category } = recommend;
     return (
       <Modal
-        title="添加商品"
+        title="添加"
         okText="确定"
         cancelText="取消"
         visible={isVisible}
@@ -99,86 +78,63 @@ class ProductForm extends React.Component {
           <input name="utf8" type="hidden" value="✓" />
           <FormItem
             {...formItemLayout}
-            label="商品名称"
+            label="名称"
             hasFeedback
           >
-            {getFieldDecorator('name', {
+            {getFieldDecorator('title', {
               rules: [{
-                required: true, message: '请输入商品名称',
+                required: true, message: '请输入名称',
               }],
-              initialValue: name
+              initialValue: title
             })(
               <Input />
               )}
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label="商品描述"
+            label="描述"
             hasFeedback
           >
-            {getFieldDecorator('description', {
-              initialValue: description
+            {getFieldDecorator('desc', {
+              initialValue: desc
             })(
               <TextArea rows={4} />
               )}
           </FormItem>
-          <FormItem
+          <Form.Item
             {...formItemLayout}
-            label="商品价格"
-            hasFeedback
+            label="分类"
           >
-            {getFieldDecorator('price', {
-              rules: [{
-                type: 'number', message: '价格必须大于1',
-              }, {
-                required: true, message: '请输入商品价格',
-              }],
-              initialValue: price
+            {getFieldDecorator('category', {
+              initialValue: category
             })(
-              <InputNumber min={1} step={1.0} />
-              )}
-          </FormItem>
-          <FormItem
-            {...formItemLayout}
-            label="商品折扣"
-            hasFeedback
-          >
-            {getFieldDecorator('discount', {
-              rules: [{
-                type: 'number', message: '折扣在0-1之间',
-              }],
-              initialValue: discount
-            })(
-              <InputNumber min={0.1} max={1} step={0.1} />
-              )}
-          </FormItem>
-          <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
-            {getFieldDecorator('is_add', {
-              valuePropName: 'checked',
-              initialValue: is_add
-            })(
-              <Checkbox>是否上架</Checkbox>
-              )}
-          </FormItem>
+              <Radio.Group>
+                <Radio value="default">default</Radio>
+                <Radio value="game">game</Radio>
+                <Radio value="book">book</Radio>
+                <Radio value="makeup">makeup</Radio>
+              </Radio.Group>
+            )}
+          </Form.Item>
         </Form>
       </Modal>
     );
   }
 }
 
-ProductForm.propTypes = {
+RecommendForm.propTypes = {
   form: PropTypes.object.isRequired,
   closeModal: PropTypes.func,
   fetchData: PropTypes.func,
   isVisible: PropTypes.bool,
-  product: PropTypes.object
+  recommend: PropTypes.object
 };
 
-ProductForm.defaultProps = {
+RecommendForm.defaultProps = {
   closeModal: () => { },
   fetchData: () => { },
   isVisible: false,
-  product: {}
+  recommend: {}
 };
 
-export default Form.create()(ProductForm);
+export default Form.create()(RecommendForm);
