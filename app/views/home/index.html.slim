@@ -2,18 +2,21 @@
   .jumbotron
     h1 =t('site_title')
     p This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.
-    /p
-      a.btn.btn-primary.btn-lg Learn more
-  /.row
-    - @products.each do |product|
-      .col-sm-6.col-md-4
-        .thumbnail
-          img src=image_path('no-picture.jpg') alt="暂无图片"
-          .caption
-            h3 #{product.name}
-            p #{product.description || '该商品没有描述～'}
-            p
-              a.btn.btn-primary href=product_path(product) role="button" 查看
-              span &nbsp;&nbsp;
-              a.btn.btn-success.js-add-cart data-id=product.id href="javascript:;" role="button" 加入购物车
-  /= paginate @products
+
+  - Recommend.categories.keys.each do |category|
+    .panel.panel-default
+      .panel-heading
+        span =t("recommend_categories.#{category}")
+        .pull-right
+          = link_to '查看更多', 'javascript:;'
+      .panel-body
+        .row
+          - Recommend.where(category: category).first(3).each do |item|
+            .col-sm-6.col-md-4
+              .thumbnail
+                img src="https://res.cloudinary.com/dwudaridr/image/upload/c_scale,w_479/v1503837751/blog/3787717_Wild_field_v1224236762_u1pkgf.jpg" width="100%"
+                .caption
+                  h3 =item.title
+                  p =item.desc
+
+
