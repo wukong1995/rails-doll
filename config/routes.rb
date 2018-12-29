@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
 
+  get 'categories/:category_name', to: 'categories#show', as: :category,
+    constraints: { category_name: /game|book|makeup|default/ }
+
   # user
   get 'signin', to: 'sessions#index'
   post 'signin', to: 'sessions#create'

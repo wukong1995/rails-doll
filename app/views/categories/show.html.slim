@@ -1,0 +1,15 @@
+.container
+  .nav.nav-tabs.u-mb-2
+    - Recommend.categories.keys.each do |category|
+      li class="#{category == params[:category_name] && 'active'}"
+        = link_to t("recommend_categories.#{category}"), category_path(category)
+  .row
+    - if @recommends.empty?
+      p.text-center.text-warnin 暂无数据
+    - @recommends.each do |item|
+      .col-sm-6.col-md-4
+        .thumbnail
+          img src="https://res.cloudinary.com/dwudaridr/image/upload/c_scale,w_479/v1503837751/blog/3787717_Wild_field_v1224236762_u1pkgf.jpg" width="100%"
+          .caption
+            h3 =item.title
+            p =item.desc
